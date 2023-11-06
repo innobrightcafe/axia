@@ -13,8 +13,8 @@
 ## InvestmentPackages Table
 
 - `package_id` (Primary Key)
-- `name` (e.g., "Auto Trading")
-- `daily_return_rate` (e.g., 0.10 for 10%)
+- `name` ("Auto Trading I", Auto TradingII "Gold I", "Gold II" "Real estate I" "Real estate II")
+- `daily_return_rate` (e.g., 0.1 for 1%)
 - `investment_period_months`
 
 ## UserInvestments Table
