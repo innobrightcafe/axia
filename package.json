@@ -1,0 +1,31 @@
+{
+  "name": "axia",
+  "version": "1.0.0",
+  "description": "- `user_id` (Primary Key)\r - `username`\r - `password` (hashed)\r - `email`\r - `balance` (user's current balance)",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "start": "nodemon index.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/innobrightcafe/axia.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/innobrightcafe/axia/issues"
+  },
+  "homepage": "https://github.com/innobrightcafe/axia#readme",
+  "dependencies": {
+    "bcrypt": "^5.1.1",
+    "cors": "^2.8.5",
+    "express": "^4.18.2",
+    "express-session": "^1.17.3",
+    "express-validator": "^7.0.1",
+    "mongodb": "^6.2.0",
+    "mongoose": "^8.0.0",
+    "nodemon": "^3.0.1"
+  }
+}
