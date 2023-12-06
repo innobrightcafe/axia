@@ -1,0 +1,10 @@
+#folders
+**/public/
+node_modules
+
+
+# all package json files
+package.json
+package-lock.json
+config.js
+.env

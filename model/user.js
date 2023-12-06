@@ -21,8 +21,8 @@ const userSchema = new Schema({
     default: "user",
   },
   ROI: { type: Number, default: 0 },
-  investmentPeriod: { type: Number },
-  investmentDate: { type: Date, default: null },
+  investmentPeriod: { type: Number, enum: [0, 3, 6, 12] },
+  investmentDate: { type: String, default: null },
   status: { type: String, enum: ["active", "inactive"], default: "inactive" },
   referredBy: {
     ref_id: { type: Schema.Types.ObjectId, ref: "User" },
@@ -32,7 +32,7 @@ const userSchema = new Schema({
       ref_id: { type: Schema.Types.ObjectId, ref: "User" },
     },
   ],
-  expiryDate: { type: Date, default: null },
+  expiryDate: { type: String, default: null },
   withdrawalInfo: [
     {
       withdrawalAmount: { type: Number, default: 0 },

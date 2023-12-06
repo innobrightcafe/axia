@@ -3,6 +3,7 @@ import { all } from "../controller/all.js";
 import { login } from "../controller/login.js";
 import { signup } from "../controller/signup.js";
 import { deleteUser } from "../controller/delete.js";
+import { pkgSubscribe } from "../controller/pkgSubscribe.js";
 import {
   validateLogin,
   loginResult,
@@ -30,5 +31,8 @@ router.post("/login", validateLogin, loginResult, login);
 
 // delete router
 router.delete("/delete", validateDelete, deleteResult, deleteUser);
+
+//update router - endpoint to update.
+router.put("/investment/", pkgSubscribe);
 
 export default router;

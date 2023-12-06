@@ -11,7 +11,7 @@ export const validateSignUp = [
       const result = await User.find({ username: value });
       console.log(result);
       if (result.length !== 0) {
-        throw new Error("Username already used.");
+        throw new Error("Username already Exist.");
       }
       return true;
     }),
