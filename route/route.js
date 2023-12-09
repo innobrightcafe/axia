@@ -34,5 +34,4 @@ router.delete("/delete", validateDelete, deleteResult, deleteUser);
 
 //update router - endpoint to update.
 router.put("/investment/", pkgSubscribe);
-
 export default router;
