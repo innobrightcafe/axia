@@ -39,6 +39,8 @@ const userSchema = new Schema({
       withdrawalDate: { type: Date, default: null },
     },
   ],
-});
+},
+{ Timestamp: true }
+);
 
 export const User = mongoose.model("User", userSchema);
