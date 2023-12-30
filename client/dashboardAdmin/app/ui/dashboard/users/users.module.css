@@ -1,0 +1,80 @@
+.container {  
+    background-color: var(--bglight);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-top: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; 
+}
+
+.table {
+    width: 100%; 
+}
+
+.table td {
+    padding: 1rem;
+    
+}
+
+.table th {
+    padding: 1rem;
+    text-align: left;
+    border-bottom: 1px solid var(--bg);
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.userImage { 
+    border-radius: 50%; 
+    object-fit: cover;
+}
+
+.buttons {
+    display: flex;
+    gap: 1rem;
+}
+
+.button {
+    padding: 0.5rem 1rem;
+    border-radius: 0.5rem;
+    border: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.status {
+    border-radius: 0.5rem;
+    padding: 0.5rem 1rem;
+    color: var(--bg);
+}
+
+.active {
+    background-color: #DFF6E4;
+    color: #2D9C6F;
+}
+
+.inactive {
+    background-color: #FCECEA;
+    color: #FF5757;
+}
+
+
+.view {
+    background-color: teal;
+    color: var(--bg);
+}
+
+.delete {
+    background-color: crimson;
+    color: var(--bg);
+}
+ 

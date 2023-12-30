@@ -1,0 +1,74 @@
+.container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50rem;
+    height: 40rem;
+    max-width: 50rem;
+    padding: 5rem;
+    gap: 2rem; 
+    border-radius: 1rem;
+    background-color: var(--bglight);
+    box-shadow: var(--shadow); 
+
+}
+
+.form input, .form select, .form textarea {
+    padding: 2rem 0 2rem 4rem; 
+    background-color: var(--bg);
+    color: var(--text);
+    border-radius: 0.5rem;
+    border: 2px solid var(--textLight);
+    margin-bottom: 2rem;
+  }
+
+   
+.form button {
+    width: 100%;
+    padding: 2rem;
+    background-color: var(--btn);
+    color: var(--bg);
+    border-radius: 1rem;
+    border: none; 
+    margin-bottom: 3rem;
+    resize: none;
+    cursor: pointer;
+  }
+
+  .header {
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 2rem;
+  }
+  
+  .form button:hover {
+    background-color: var(--btnHover);
+  }
+
+  .pwIcon {
+    cursor: pointer;
+    position: absolute; 
+    margin-left: 1rem;
+    margin-top: -3rem;
+    height: 2rem; 
+    width: 2rem;; 
+    color: var(--btn);
+  }
+
+  .userIcon {
+    cursor: pointer;
+    position: absolute; 
+    margin-left: 1rem; 
+    height: 2rem; 
+    margin-top: -23rem;
+    width: 2rem;; 
+    color: var(--btn);
+  }

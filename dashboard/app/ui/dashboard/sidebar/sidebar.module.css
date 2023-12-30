@@ -1,0 +1,61 @@
+.container {
+    position: sticky;
+    top: 4rem;
+}
+
+.user {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.userImage {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.userDetails {
+    display: flex;
+    flex-direction: column;
+}
+
+.username {
+    font-weight: 600;
+}
+
+.userTitle {
+    font-size: 1.2rem;
+    color: var(--text);
+}
+
+.list {
+    list-style: none;
+    color: var(--textLight);
+}
+
+.cat {
+    color: var(--text);
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin: 1rem 0;
+}
+
+.signout {
+    padding: 1rem;
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    border-radius: 1rem;
+    background: none;
+    border: none;
+    width: 100%;
+    color: var(--btn);
+
+}
+
+.signout:hover {
+    background-color: var(--btn);
+    color: azure;
+}
