@@ -1,0 +1,196 @@
+/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[3]!./app/ui/dashboard/navbar/navbar.module.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************/
+.navbar_container__wgx6E {
+  padding: 2rem;
+  border-radius: 1rem;
+  background-color: var(--bglight);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  box-shadow: var(--shadow);
+}
+
+.navbar_title__fXyFf {
+  color: var(--textLight);
+  font-weight: bold;
+  text-transform: capitalize;
+}
+
+.navbar_menu__I_JWq {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  cursor: pointer;
+}
+
+.navbar_search___WH_U {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  background-color: var(--bg);
+  padding: 1rem;
+  border-radius: 1rem;
+  width: max-content;
+}
+
+.navbar_input__n6iGr {
+  background-color: transparent;
+  border: none;
+  color: var(--text);
+  outline: none;
+}
+
+.navbar_icons__powNM {
+  display: flex;
+  gap: 2rem;
+}
+
+/*!*************************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[3]!./app/ui/dashboard/sidebar/menuLink/menuLink.module.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************************/
+.menuLink_container__jsAb6 {
+    padding: 1rem;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin: 0.5rem 0;
+    border-radius: 1rem; 
+}
+
+.menuLink_container__jsAb6:hover, .menuLink_active__0jFVX {
+    background-color: var(--btn);
+    color: azure;
+}
+
+
+/*!***************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[3]!./app/ui/dashboard/sidebar/sidebar.module.css ***!
+  \***************************************************************************************************************************************************************************************************************************************************************************************/
+.sidebar_container__98R6a {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 4rem;
+}
+
+.sidebar_user__RC2Iy {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+}
+
+.sidebar_userImage__Mmmhu {
+    border-radius: 50%;
+    object-fit: cover;
+}
+
+.sidebar_userDetails__efK_X {
+    display: flex;
+    flex-direction: column;
+}
+
+.sidebar_username__0gBZw {
+    font-weight: 600;
+}
+
+.sidebar_userTitle__Cf6_w {
+    font-size: 1.2rem;
+    color: var(--text);
+}
+
+.sidebar_list__AUZl1 {
+    list-style: none;
+    color: var(--textLight);
+}
+
+.sidebar_cat__7oOge {
+    color: var(--text);
+    font-weight: bold;
+    font-size: 1.3rem;
+    margin: 1rem 0;
+}
+
+.sidebar_signout__7LH2a {
+    padding: 1rem;
+    margin: 0.5rem 0;
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    cursor: pointer;
+    border-radius: 1rem;
+    background: none;
+    border: none;
+    width: 100%;
+    color: var(--btn);
+
+}
+
+.sidebar_signout__7LH2a:hover {
+    background-color: var(--btn);
+    color: azure;
+}
+/*!*********************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[3]!./app/ui/dashboard/dashboard.module.css ***!
+  \*********************************************************************************************************************************************************************************************************************************************************************************/
+.dashboard_container__FPt6d {
+  display: flex; 
+}
+
+.dashboard_menu__kkWR1 {
+    flex: 1 1;
+    background-color: var(--bglight);
+    padding: 1rem;
+    min-height: 100vh;
+}
+
+.dashboard_content__sQime {
+    flex: 4 1;
+    padding: 1rem;
+}
+
+.dashboard_wrapper__BHOQf {
+  display: flex;
+  gap: 2rem;
+  margin-top: 2rem;
+
+}
+
+.dashboard_main__h9_Qo {
+  flex: 3 1;
+  display: flex;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.dashboard_cards__FzV77 {
+  display: flex;
+  gap: 2rem;
+  justify-content: space-between;
+}
+
+.dashboard_side__cRt2d{
+  flex: 1 1;
+
+}
+/*!*************************************************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/next/dist/build/webpack/loaders/css-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[2]!./node_modules/next/dist/build/webpack/loaders/postcss-loader/src/index.js??ruleSet[1].rules[12].oneOf[7].use[3]!./app/ui/dashboard/footer/footer.module.css ***!
+  \*************************************************************************************************************************************************************************************************************************************************************************************/
+.footer_container__d0pz4 {
+    display: flex; 
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-top: 3rem;
+    color: var(--textLight);
+    background-color: var(--bglight);
+    padding: 1rem;
+}
+
+.footer_item__Wtnxo {
+    font-weight: bold; 
+    font-size: 1.5rem;
+}
+
+.footer_text__471po {
+    font-size: 1.5rem; 
+}
