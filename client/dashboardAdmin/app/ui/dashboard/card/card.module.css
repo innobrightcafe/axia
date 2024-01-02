@@ -1,0 +1,41 @@
+.container {
+    display: flex; 
+    background-color: var(--bglight);
+    color: var(--text);
+    padding: 2rem;
+    border-radius: 1rem;
+    gap: 2rem;
+    cursor: pointer;
+    box-shadow:  var(--shadow); 
+}
+
+.container:hover {
+    background-color: var(--btnHover);
+    color: var(--bg);
+
+}
+.texts {
+    display: flex;
+    flex-direction: column; 
+    gap: 2rem;
+}
+
+.number {
+    font-size: 2.4rem;
+    font-weight: 700;
+}
+
+.details {
+    font-size: 1.4rem;
+    font-weight: 400; 
+}
+
+.positive {
+    color: green;
+}
+.negative {
+    color: red;
+}
+
+/* Path: baston/bastonapp/bastonapps/nextadmin/app/ui/dashboard/card/card.module.css */
+
