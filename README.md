@@ -41,4 +41,3 @@
 - `withdrawal_amount`
 - `withdrawal_date`
 - `status` ( "Pending," "Processed")
-

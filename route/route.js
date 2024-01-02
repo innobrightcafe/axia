@@ -4,6 +4,7 @@ import { login } from "../controller/login.js";
 import { signup } from "../controller/signup.js";
 import { deleteUser } from "../controller/delete.js";
 import { pkgSubscribe } from "../controller/pkgSubscribe.js";
+import { myData } from "../controller/myData.js";
 import {
   validateLogin,
   loginResult,
@@ -23,8 +24,14 @@ const router = express.Router();
 // get router - endpoint to obtain all information
 router.get("/all", all);
 
+// get router - endpoint to obtain an information
+router.get("/myData", myData);
+
 // post router for sign up
 router.post("/signup", validateSignUp, signUpResult, signup);
+
+// post router for admin-sign up
+// router.post("/adminSignup", validateSignUp, signUpResult, adminSignup);
 
 // post router - endpoint to login
 router.post("/login", validateLogin, loginResult, login);
@@ -34,4 +41,5 @@ router.delete("/delete", validateDelete, deleteResult, deleteUser);
 
 //update router - endpoint to update.
 router.put("/investment/", pkgSubscribe);
+
 export default router;

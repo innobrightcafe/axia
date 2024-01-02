@@ -8,16 +8,9 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   balance: { type: Number, default: 0 },
   refererCode: { type: String, required: true },
+  isAdmin: { type: Boolean, default: false},
   investmentPackage: {
     type: String,
-    enum: [
-      "user",
-      "Auto_Trading_I",
-      "Gold_I",
-      "Gold_II",
-      "Real_Estate_I",
-      "Real_Estate_II",
-    ],
     default: "user",
   },
   ROI: { type: Number, default: 0 },
