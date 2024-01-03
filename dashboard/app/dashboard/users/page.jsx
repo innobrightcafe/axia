@@ -3,14 +3,14 @@ import styles from "../../ui/dashboard/users/users.module.css";
 import Link from "next/link";
 import Button from "../../ui/uis/button";
 import Image from "next/image";
-import Pagination from "../../ui/dashboard/pagination/pagination";
-import { fetchUser } from "../../lib/data"; 
-import { deleteUser } from "../../lib/actions";
+import Pagination from "../../ui/dashboard/pagination/pagination"; 
+import { fetchDataFromAPI } from "../../lib/actions";
 
-const UsersPage = async ({ searchParams }) => {
-  const q = searchParams?.q || "";
-  const page = searchParams?.page || 1;
-  const { users, total_page } = await fetchUser(q, page); 
+const UsersPage = async ( ) => {
+  // const q = searchParams?.q || "";
+  // const page = searchParams?.page || 1;
+  // const { users, total_page } = await fetchData(q, page); 
+  const fetchdata = await fetchDataFromAPI()
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -81,7 +81,7 @@ const UsersPage = async ({ searchParams }) => {
           ))}
         </tbody>
       </table>
-      <Pagination total_page={total_page} />
+      <Pagination/>
     </div>
   );
 };

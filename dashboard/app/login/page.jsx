@@ -1,15 +1,17 @@
 import styles from "../ui/login/login.module.css";
 import { FaRegUser } from "react-icons/fa";
-import { MdLockOutline } from "react-icons/md";
+import { MdLockOutline } from "react-icons/md";  
+import { sendLoginData } from "../lib/actions";
 
-const LoginPage = () => {
+const LoginPage = async () => { 
+
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>
         <h1 className={styles.header}>
           Please provide details and click continue.
         </h1>
-        <form action="" className={styles.form}>
+        <form action={ sendLoginData } className={styles.form}>
           <input
             type="text"
             name="username"
@@ -26,7 +28,7 @@ const LoginPage = () => {
           />
           <MdLockOutline className={styles.pwIcon} />
 
-          <button type="submit">Login</button>
+          <button>Login</button>
         </form>
       </div>
     </div>

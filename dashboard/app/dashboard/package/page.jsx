@@ -3,14 +3,19 @@ import Button from "../../ui/uis/button";
 import Image from "next/image";
 import Link from "next/link";
 import styles from "../../ui/dashboard/packages/packages.module.css";
-import Pagination from "../../ui/dashboard/pagination/pagination";
-import { fetchPackage } from "../../lib/data";
-import { deletePackage } from "../../lib/actions";
+import Pagination from "../../ui/dashboard/pagination/pagination"; 
+import { deletePackage } from "../../lib/actions"; 
+import { fetchDataFromAPI } from "../../lib/fetchData";
 
-const PackagePage = async ({ searchParams }) => {
-  const q = searchParams?.q || "";
-  const page = searchParams?.page || 1;
-  const { packages, total_page } = await fetchPackage(q, page);
+
+
+ const PackagePage = async ( ) => {
+//   const q = searchParams?.q || "";
+//   const page = searchParams?.page || 1;
+//   const { total_page } = await fetchDataFromAPI(q, page);
+  const fetchdata = await fetchDataFromAPI()
+  console.log(fetchdata)
+
   return (
     <div>
       <div className={styles.container}>
@@ -21,7 +26,7 @@ const PackagePage = async ({ searchParams }) => {
           </Link>
         </div>
         <div className={styles.package}>
-          {packages.map((pkg) => (
+          {fetchdata.map((pkg) => (
             <div className={styles.packageIn} key={pkg.id}>
               <h2>{pkg.packageName}</h2>
               <div className={styles.packageimg}>
@@ -59,7 +64,7 @@ const PackagePage = async ({ searchParams }) => {
             </tr>
           </thead>
           <tbody className={styles.tbody}>
-            {packages.map((pkg) => (
+            {fetchdata.map((pkg) => (
               <tr key={pkg.id}>
                 <td>
                   <div className={styles.packages}>
