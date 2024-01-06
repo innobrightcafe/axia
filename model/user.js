@@ -1,4 +1,3 @@
-import { Timestamp } from "mongodb";
 import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
@@ -8,13 +7,13 @@ const userSchema = new Schema({
   password: { type: String, required: true },
   balance: { type: Number, default: 0 },
   refererCode: { type: String, required: true },
-  isAdmin: { type: Boolean, default: false},
+  isAdmin: { type: Boolean, default: false },
   investmentPackage: {
     type: String,
     default: "user",
   },
   ROI: { type: Number, default: 0 },
-  investmentPeriod: { type: Number, enum: [0, 3, 6, 12] },
+  investmentPeriod: { type: Number, default: 0 },
   investmentDate: { type: String, default: null },
   status: { type: String, enum: ["active", "inactive"], default: "inactive" },
   referredBy: {
@@ -32,8 +31,6 @@ const userSchema = new Schema({
       withdrawalDate: { type: Date, default: null },
     },
   ],
-},
-{ Timestamp: true }
-);
+});
 
 export const User = mongoose.model("User", userSchema);

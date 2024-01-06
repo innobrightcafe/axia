@@ -5,6 +5,7 @@ import { signup } from "../controller/signup.js";
 import { deleteUser } from "../controller/delete.js";
 import { pkgSubscribe } from "../controller/pkgSubscribe.js";
 import { myData } from "../controller/myData.js";
+import { admin } from "../controller/admin.js";
 import {
   validateLogin,
   loginResult,
@@ -17,6 +18,10 @@ import {
   validateDelete,
   deleteResult,
 } from "../middlewares/validators/deleteValidator.js";
+import {
+  adminValidator,
+  adminValidationResult,
+} from "../middlewares/validators/adminInput.js";
 
 // declaring router
 const router = express.Router();
@@ -31,7 +36,7 @@ router.get("/myData", myData);
 router.post("/signup", validateSignUp, signUpResult, signup);
 
 // post router for admin-sign up
-// router.post("/adminSignup", validateSignUp, signUpResult, adminSignup);
+router.post("/admin", adminValidator, adminValidationResult, admin);
 
 // post router - endpoint to login
 router.post("/login", validateLogin, loginResult, login);

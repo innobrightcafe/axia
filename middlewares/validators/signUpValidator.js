@@ -9,7 +9,6 @@ export const validateSignUp = [
     .withMessage("No username")
     .custom(async (value, { req }) => {
       const result = await User.find({ username: value });
-      console.log(result);
       if (result.length !== 0) {
         throw new Error("Username already Exist.");
       }
@@ -43,7 +42,6 @@ export const validateSignUp = [
 ];
 
 export const signUpResult = (req, res, next) => {
-  console.log(req.body);
   const result = validationResult(req).array();
   if (!result.length) {
     next();
@@ -54,7 +52,6 @@ export const signUpResult = (req, res, next) => {
     success: false,
     message: error,
   };
-  console.log(result);
   console.log(req.body);
   return res.status(200).json(val);
 };
