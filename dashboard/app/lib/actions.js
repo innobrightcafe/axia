@@ -1,14 +1,10 @@
 "use server";
-import { connectToDB } from "./utils";
-import { Packages, User } from "./models";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
-import bcrypt from "bcrypt";
-import { signIn } from "../auth";
 
-export const fetchDataFromAPI = async () => {
+export const fetchUsers = async () => {
   try {
-    const apiUrl = `${process.env.APIURL}/myData`
+    const apiUrl = `${process.env.APIURL}/all`;
     // Fetch data from API endpoint
     const Data = await fetch(apiUrl, {
       cache: "no-store",
@@ -21,54 +17,226 @@ export const fetchDataFromAPI = async () => {
   }
 };
 
-
-export const sendLoginData = async (event) =>  {
-  event.preventDefault()
+export const fetchPackage = async () => {
   try {
-  const apiUrl = `${process.env.APIURL}/login`
-  const formData = new FormData(event.target)
-  const response = await fetch(apiUrl, {
-    method: 'POST',
-    body: formData,
-  })
-
-  // Handle response from API
-  const data = await response.json()
-  return data;
-} catch(err) {
-  console.log(data)
-  console.error("Error fetching data from API:", err.message);
-  throw new Error("API data fetching error");
-}
-}
-
-
-
-export const addUser = async (formData) => {
-  const { username, email, password, phone, address, isAdmin, IsActive } =
-    Object.fromEntries(formData);
-  try {
-    connectToDB();
-    const salt = await bcrypt.genSalt(10);
-    const hashedPassword = await bcrypt.hash(password, salt);
-    const newUser = new User({
-      username,
-      email,
-      password: hashedPassword,
-      phone,
-      address,
-      isAdmin,
-      IsActive,
+    const apiUrl = `${process.env.APIURL}/package`;
+    // Fetch data from API endpoint
+    const Data = await fetch(apiUrl, {
+      cache: "no-store",
     });
-    await newUser.save(); // save to database
+    const data = await Data.json();
+    return data;
+  } catch (error) {
+    console.error("Error fetching data from API:", error.message);
+    throw new Error("API data fetching error");
+  }
+};
+
+export const authenticateUser = async (formData) => {
+  const username = formData.get("username");
+  const password = formData.get("password");
+  const role = formData.get("role");
+
+  try {
+    const apiUrl = `${process.env.APIURL}/login`;
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({ username, password, role }),
+    });
+
+    const result = await response.json();
+    console.log(result);
+
+    if (result === true) {
+      redirect(role === "admin" ? "/dashboard" : "/usersdashboard");
+    }
   } catch (err) {
     console.log(err);
-    throw new Error("failed to add user!");
+    throw new Error("failed to login");
   }
-
-  revalidatePath("/dashboard/users");
-  redirect("/dashboard/users");
 };
+
+export const addUser = async (formData) => {
+  const username = formData.get("username");
+  const email = formData.get("email");
+  const password = formData.get("password");
+  const confirmPassword = formData.get("confirmPassword");
+  
+  try {
+    // Create a user object
+    const newUser = {
+      username,
+      email,
+      password,
+      confirmPassword,
+    };
+    // Send the user data to the API
+    const apiUrl = `${process.env.APIURL}/signup`;
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({newUser}),
+    }); 
+    
+    if (!response.ok) {
+      const errorData = await response.json();
+      throw new Error(`Failed to add user. Server error: ${errorData.message}`);
+       
+    }
+    // Handle response
+    const result = await response.json(); 
+    console.log(result); 
+    return result; 
+    
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to add user");
+    
+  } 
+};
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+// export const sendLoginData = async (event) => {
+//   event.preventDefault();
+//   try {
+//     const apiUrl = `${process.env.APIURL}/login`;
+//     const formData = new FormData(event.target);
+//     const response = await fetch(apiUrl, {
+//       method: "POST",
+//       body: formData,
+//     });
+
+//     // Handle response from API
+//     const data = await response.json();
+//     console.log(data);
+//     return data;
+//   } catch (err) {
+//     console.error("Error fetching data from API:", err.message);
+//     throw err; // Re-throw the error
+//   }
+// };
+
+// export const addUser = async (formData) => {
+//   const { username, email, password } =
+//     Object.fromEntries(formData);
+//   try {
+//     const apiUrl = `${process.env.APIURL}/signup`;
+//     const response = await fetch(apiUrl, {
+//       method: "POST",
+//       body: formData,
+//     });
+//     const salt = await bcrypt.genSalt(10);
+//     const hashedPassword = await bcrypt.hash(password, salt);
+//     const newUser = new FormData({
+//       username,
+//       email,
+//       password: hashedPassword,
+//       confirmpassword: hashedPassword,
+//     });
+//     await newUser.save(); // save to database
+//   } catch (err) {
+//     console.log(err);
+//     throw new Error("failed to add user!");
+//   }
+
+//   revalidatePath("/dashboard/users");
+//   redirect("/dashboard/login");
+// };
+
+ 
+
+
+
+export const userRegistration = async (formData) => {
+  const username = formData.get("username");
+  const email = formData.get("email");
+  const password = formData.get("password");
+  const confirmPassword = formData.get("confirmPassword");
+  try {
+    if (!password || !confirmPassword || !email || !username) return;
+
+    // Create a user object
+    const newUser = {
+      username,
+      email,
+      password,
+      confirmPassword,
+    };
+    // Send the user data to the API
+    const apiUrl = `${process.env.APIURL}/signup`;
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(newUser),
+    });
+
+    if (!response.ok) {
+      throw new Error("Failed to connect to API. Please try again.");
+    }
+    // Handle response
+    const result = await response.json();
+    return result;
+  } catch (err) {
+    console.log(err);
+    throw new Error("failed to register user!");
+  } 
+
+};
+
+// export const onSubmit = async (event, setIsLoading, setError) => {
+//   event.preventDefault();
+//   setIsLoading(true); // Set loading to true when the request starts
+//   setError(null); // Clear previous errors when a new request starts
+
+//   console.log("Form Data:", formData);
+
+//   try {
+//     const apiUrl = `${process.env.APIURL}/signup`;
+//     const formData = new FormData(event.currentTarget);
+//     const response = await fetch(apiUrl, {
+//       method: "POST",
+//       body: formData,
+//     });
+
+//     if (!response.ok) {
+//       throw new Error("Failed to submit the data. Please try again.");
+//     }
+
+//     // Handle response if necessary
+//     const data = await response.json();
+//     // ...
+//   } catch (error) {
+//     setError(error.message);
+//     console.error(error);
+//   } finally {
+//     setIsLoading(false); // Set loading to false when the request completes
+//   }
+//   revalidatePath("/dashboard/users");
+//   redirect("/dashboard/login");
+// };
 
 export const addPackages = async (formData) => {
   const { packageName, desc, amount, roi, period } =
@@ -151,16 +319,7 @@ export const deletePackage = async (formData) => {
 };
 
 export const updatePackage = async (formData) => {
-  const { 
-    id, 
-    packageName,
-    desc,
-    amount,
-    roi,
-    period,
-    isActive,
-    createdAt
-} =
+  const { id, packageName, desc, amount, roi, period, isActive, createdAt } =
     Object.fromEntries(formData);
   try {
     connectToDB();
@@ -172,7 +331,7 @@ export const updatePackage = async (formData) => {
       roi,
       period,
       isActive,
-      createdAt
+      createdAt,
     };
 
     Object.keys(updateFields).forEach(
@@ -191,23 +350,21 @@ export const updatePackage = async (formData) => {
 
 
 
-export const authenticateUser = async (formData) => {
-  const { username, password } = Object.fromEntries(formData);
-
+export const signOut = async () => {
   try {
-    const result = await signIn("credentials", { username, password });
-    console.log(result);
+    const apiUrl = `${process.env.APIURL}/logout`;
 
-  }catch(err){
-    console.log(err);
-    throw new Error("failed to login");
+    const Data = await fetch(apiUrl, {
+      method: "DELETE",
+    });
+    const data = await Data.json();
+
+    return data;
+  } catch (err) {
+    console.error("Logout error:", err);
+    throw new Error("Logout error");
   }
-}
-
-
-
-
-
+};
 
 // export const addDeposit = async (formData) => {
 //   const { userId, amount, packageId, roi, period } =

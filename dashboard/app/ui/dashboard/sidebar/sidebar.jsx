@@ -4,15 +4,14 @@ import styles from "./sidebar.module.css";
 import { FaUser, FaUsers } from "react-icons/fa6";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import {
-  
-  MdAnalytics, 
+  MdAnalytics,
   MdDashboard,
   MdHelpCenter,
   MdLogout,
   MdOutlineSettingsApplications,
-  MdPeople, 
+  MdPeople,
   MdShoppingBag,
-  MdSupervisedUserCircle, 
+  MdSupervisedUserCircle,
   MdWork,
 } from "react-icons/md";
 const menuItems = [
@@ -21,22 +20,22 @@ const menuItems = [
     list: [
       {
         title: "Dashboard ",
-        icon: <MdDashboard size={15}/>,
+        icon: <MdDashboard size={15} />,
         path: "/dashboard",
       },
       {
         title: "Users",
-        icon: <MdSupervisedUserCircle size={15}/>,
+        icon: <MdSupervisedUserCircle size={15} />,
         path: "/dashboard/users",
       },
       {
         title: "Package",
-        icon: <MdShoppingBag size={15}/>,
+        icon: <MdShoppingBag size={15} />,
         path: "/dashboard/package",
       },
       {
         title: "Transactions",
-        icon: <RiMoneyDollarCircleFill size={15}/>,
+        icon: <RiMoneyDollarCircleFill size={15} />,
         path: "/dashboard/transactions",
       },
     ],
@@ -46,17 +45,17 @@ const menuItems = [
     list: [
       {
         title: "Revenue",
-        icon: <MdWork size={15}/>,
+        icon: <MdWork size={15} />,
         path: "/dashboard/revenue",
       },
       {
         title: "Reports",
-        icon: <MdAnalytics size={15}/>,
+        icon: <MdAnalytics size={15} />,
         path: "/dashboard/reports",
       },
       {
         title: "Referrer",
-        icon: <FaUsers size={15}/>,
+        icon: <FaUsers size={15} />,
         path: "/dashboard/teams",
       },
     ],
@@ -71,14 +70,14 @@ const menuItems = [
       },
       {
         title: "help",
-        icon: <MdHelpCenter size={15}/>,
+        icon: <MdHelpCenter size={15} />,
         path: "/dashboard/help",
       },
       {
         title: "Settings",
-        icon: <MdOutlineSettingsApplications size={15}/>,
+        icon: <MdOutlineSettingsApplications size={15} />,
         path: "/dashboard/settings",
-      }, 
+      },
     ],
   },
 ];
@@ -109,7 +108,17 @@ const Sidebar = () => {
           </li>
         ))}
       </ul>
-      <button className={styles.signout} ><MdLogout size={15}/>Signout</button>
+      <form
+        action={async () => {
+          "use server";
+          await signOut();
+        }}
+      >
+        <button className={styles.signout}>
+          <MdLogout size={15} />
+          Signout
+        </button>
+      </form>
     </div>
   );
 };

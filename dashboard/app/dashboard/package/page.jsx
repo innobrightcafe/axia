@@ -4,8 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "../../ui/dashboard/packages/packages.module.css";
 import Pagination from "../../ui/dashboard/pagination/pagination"; 
-import { deletePackage } from "../../lib/actions"; 
-import { fetchDataFromAPI } from "../../lib/fetchData";
+import { deletePackage, fetchPackage } from "../../lib/actions";  
 
 
 
@@ -13,7 +12,7 @@ import { fetchDataFromAPI } from "../../lib/fetchData";
 //   const q = searchParams?.q || "";
 //   const page = searchParams?.page || 1;
 //   const { total_page } = await fetchDataFromAPI(q, page);
-  const fetchdata = await fetchDataFromAPI()
+const packageData = await fetchPackage()
   console.log(fetchdata)
 
   return (
@@ -26,7 +25,7 @@ import { fetchDataFromAPI } from "../../lib/fetchData";
           </Link>
         </div>
         <div className={styles.package}>
-          {fetchdata.map((pkg) => (
+          {packageData.map((pkg) => (
             <div className={styles.packageIn} key={pkg.id}>
               <h2>{pkg.packageName}</h2>
               <div className={styles.packageimg}>

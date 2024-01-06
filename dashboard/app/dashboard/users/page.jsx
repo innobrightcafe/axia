@@ -4,13 +4,13 @@ import Link from "next/link";
 import Button from "../../ui/uis/button";
 import Image from "next/image";
 import Pagination from "../../ui/dashboard/pagination/pagination"; 
-import { fetchDataFromAPI } from "../../lib/actions";
+import { deleteUser, fetchUsers } from "../../lib/actions";
 
 const UsersPage = async ( ) => {
-  // const q = searchParams?.q || "";
-  // const page = searchParams?.page || 1;
-  // const { users, total_page } = await fetchData(q, page); 
-  const fetchdata = await fetchDataFromAPI()
+  const q = searchParams?.q || "";
+  const page = searchParams?.page || 1; 
+  const {users, total_page} = await fetchUsers(q, page)
+  console.log(users)
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -30,9 +30,9 @@ const UsersPage = async ( ) => {
             <th>Actions</th>
           </tr>
         </thead>
-        <tbody>
+        <tbody >
           {users.map((user) => (
-            <tr key={user.id}>
+            <tr key={user.id} >
               <td>
                 <div className={styles.user}>
                   <Image

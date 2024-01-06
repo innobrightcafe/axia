@@ -1,11 +1,11 @@
-import { MdPlayCircleFilled } from 'react-icons/md'
+import { MdPlayArrow  } from 'react-icons/md'
 import styles from './button.module.css'
 
 const Button = ({props}) => {
   return (
     <div>
         <button className={styles.button}>
-            <MdPlayCircleFilled className={styles.icon} />
+            <MdPlayArrow className={styles.icon} />
             {props} 
         </button>
     </div>

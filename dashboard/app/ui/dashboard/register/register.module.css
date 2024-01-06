@@ -1,0 +1,58 @@
+.container { 
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+} 
+ 
+
+ 
+ 
+.form {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; 
+  padding: 1rem;
+  gap: 2rem; ;
+  border-radius: 1rem;
+  background-color: var(--bglight);
+  box-shadow: var(--shadow);
+}
+
+.form input  { 
+  padding: 2rem 0 2rem 4rem;
+  background-color: var(--bg);
+  color: var(--text);
+  width: 100%;
+  border-radius: 0.5rem;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+  border-style: none; 
+  margin-bottom: 1rem;
+}
+ .inputdiv svg {
+  position: absolute; 
+  left: 1.5rem; 
+  transform: translateY(85%); 
+ }
+.form button {
+  width: 100%;
+  padding: 2rem;
+  background-color: var(--btn);
+  color: var(--bg);
+  border-radius: 1rem;
+  border: none; 
+  cursor: pointer;
+}
+
+.header {
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.form button:hover {
+  background-color: var(--btnHover);
+}
+ 
+ 
