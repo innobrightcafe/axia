@@ -3,12 +3,12 @@ import { MdArrowLeft, MdArrowRight } from 'react-icons/md'
 import styles from './pagination.module.css'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
-const Pagination = ({total_page}) => {
+const Pagination = ({total_page }) => { 
   const searchParams = useSearchParams()
   const { replace } = useRouter()
   const parthName = usePathname()
-
-  const page = searchParams.get('page') || 1
+  const q = searchParams?.get('q') || '';
+  const page = searchParams?.get('page') || 1; 
 
   const params = new URLSearchParams(searchParams)
   const PER_PAGE = 3

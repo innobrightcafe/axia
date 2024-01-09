@@ -1,16 +1,17 @@
+ 
 import Search from "../../ui/dashboard/search/search";
 import styles from "../../ui/dashboard/users/users.module.css";
 import Link from "next/link";
 import Button from "../../ui/uis/button";
 import Image from "next/image";
 import Pagination from "../../ui/dashboard/pagination/pagination"; 
-import { deleteUser, fetchUsers } from "../../lib/actions";
+import { deleteUser, fetchUsers } from "../../lib/actions"; 
 
-const UsersPage = async ( ) => {
-  const q = searchParams?.q || "";
-  const page = searchParams?.page || 1; 
-  const {users, total_page} = await fetchUsers(q, page)
-  console.log(users)
+const UsersPage = async () => {
+  // const q = "";  
+  // const page = 1;  
+  const users = await fetchUsers();
+  console.log(users);
   return (
     <div className={styles.container}>
       <div className={styles.top}>

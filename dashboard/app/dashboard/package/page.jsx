@@ -8,12 +8,12 @@ import { deletePackage, fetchPackage } from "../../lib/actions";
 
 
 
- const PackagePage = async ( ) => {
+ const PackagePage = async () => {
 //   const q = searchParams?.q || "";
 //   const page = searchParams?.page || 1;
 //   const { total_page } = await fetchDataFromAPI(q, page);
 const packageData = await fetchPackage()
-  console.log(fetchdata)
+  console.log(packageData)
 
   return (
     <div>
@@ -63,7 +63,7 @@ const packageData = await fetchPackage()
             </tr>
           </thead>
           <tbody className={styles.tbody}>
-            {fetchdata.map((pkg) => (
+            {packageData.map((pkg) => (
               <tr key={pkg.id}>
                 <td>
                   <div className={styles.packages}>
@@ -101,7 +101,7 @@ const packageData = await fetchPackage()
             ))}
           </tbody>
         </table>
-        <Pagination total_page={total_page} />
+        {/* <Pagination total_page={total_page} /> */}
       </div>
     </div>
   );

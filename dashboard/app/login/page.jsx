@@ -23,7 +23,7 @@ const LoginPage = () => {
           </div>
         </div>
         <form action={authenticateUser} className={styles.form}>
-          <div className={styles.radio}>
+          {/* <div className={styles.radio}>
             <input
               type="radio"
               id="user"
@@ -53,7 +53,7 @@ const LoginPage = () => {
               <div className={styles.dot}></div>
               <span>Admin</span>
             </label>
-          </div>
+          </div> */}
 
           <div className={styles.inputdiv}>
           <svg

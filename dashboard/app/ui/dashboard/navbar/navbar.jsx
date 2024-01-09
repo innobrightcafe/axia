@@ -9,6 +9,7 @@ import {
   MdSearch,
 } from "react-icons/md";
 import Image from "next/image";
+import UserDropdown from '../../../ui/dashboard/navbar/dropdown'
 
 const Navbar = () => {
   const pathname = usePathname;
@@ -32,7 +33,7 @@ const Navbar = () => {
         <div className={styles.icons}>
           <MdOutlineChat size={20} />
           <MdNotifications size={20} />
-          <MdPublic size={20} />
+          <MdPublic size={20} /> 
         </div>
       </div>
     </div>
