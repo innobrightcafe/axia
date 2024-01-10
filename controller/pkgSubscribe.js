@@ -2,7 +2,7 @@ import { User } from "../model/user.js";
 import { timeGen } from "../middlewares/allocateTime.js";
 import { timeout } from "../middlewares/timeout.js";
 
-export const pkgSubscribe = async (req, res) => {
+export const pkgSubscribe = async (req, res, next) => {
   try {
     const pkg = req.query.package;
     const email = req.body.email;
@@ -21,21 +21,24 @@ export const pkgSubscribe = async (req, res) => {
       expiryDate: setDate,
     };
 
-    const timeElapsed = await timeout(durSeconds);
-    console.log("current Date: ", currentDate);
-    console.log("expired Date: ", setDate);
-    console.log("Elapsed Time", timeElapsed);
-
     const result = await User.find({ email });
     if (result && paid) {
       await User.findOneAndUpdate(
         { email },
         {
-          $set: info,
+          $set: {
+            investmentPackage: pkg,
+            status: "active",
+            ROI: ROI,
+            investmentPeriod: duration,
+            investmentDate: currentDate,
+            expiryDate: setDate,
+          },
         }
       );
 
-      return res.send({ success: true, message: "New package subscribed." });
+      await timeout(durSeconds, email);
+      return res.send({ success: true, message: "Subscription has Elapsed." });
     } else {
       return res.send({ success: false, message: "User does not exist" });
     }

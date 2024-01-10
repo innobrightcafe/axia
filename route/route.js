@@ -47,4 +47,12 @@ router.delete("/delete", validateDelete, deleteResult, deleteUser);
 //update router - endpoint to update.
 router.put("/investment/", pkgSubscribe);
 
+router.post("/test", (req, res) => {
+  if (req.body.length > 0) {
+    console.log(req.body);
+    return res.send("data was parsed.");
+  }
+  return res.send("Nothing was parsed.");
+});
+
 export default router;
