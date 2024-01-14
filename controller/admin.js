@@ -12,7 +12,8 @@ export async function admin(req, res) {
   const amount = req.body.amount;
   const pass = true;
 
-  const dataPass = packageName && ROI && period && description && pass;
+  const dataPass =
+    packageName && ROI && period && description && amount && pass;
   console.log("dataPass", dataPass);
 
   const adminData = {
