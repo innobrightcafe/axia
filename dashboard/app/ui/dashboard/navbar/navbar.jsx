@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import styles from "./navbar.module.css";
 import {
+  MdLogout,
   MdNotifications,
   MdOutlineChat,
   MdPublic,
@@ -34,6 +35,7 @@ const Navbar = () => {
           <MdOutlineChat size={20} />
           <MdNotifications size={20} />
           <MdPublic size={20} /> 
+          Logout<MdLogout  size={20} /> 
         </div>
       </div>
     </div>

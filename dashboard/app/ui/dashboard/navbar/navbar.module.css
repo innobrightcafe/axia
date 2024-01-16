@@ -40,5 +40,11 @@
 
 .icons {
   display: flex;
-  gap: 2rem;
+  gap: 1rem;
 }
+
+.icon span {
+  font-size: .5rem; 
+}
+
+

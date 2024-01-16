@@ -4,8 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "../../ui/dashboard/packages/packages.module.css";
 import Pagination from "../../ui/dashboard/pagination/pagination"; 
-import { deletePackage } from "../../lib/actions"; 
-import { fetchDataFromAPI } from "../../lib/fetchData";
+import { fetchPackage } from "../../lib/actions";  
 
 
 
@@ -13,11 +12,11 @@ import { fetchDataFromAPI } from "../../lib/fetchData";
 //   const q = searchParams?.q || "";
 //   const page = searchParams?.page || 1;
 //   const { total_page } = await fetchDataFromAPI(q, page);
-  const fetchdata = await fetchDataFromAPI()
+  const fetchdata = await fetchPackage()
   console.log(fetchdata)
 
   return (
-    <div>
+      <div className={styles.container}>
       <div className={styles.container}>
         <div className={styles.top}>
           <Search placeholder="search users..." />
@@ -50,8 +49,8 @@ import { fetchDataFromAPI } from "../../lib/fetchData";
               </div>
             </div>
           ))}
-        </div> 
-        <Pagination total_page={total_page} />
+        </div>
+        {/* <Pagination total_page={total_page} /> */}
       </div>
     </div>
   );

@@ -1,58 +1,93 @@
 import Image from "next/image";
 import MenuLink from "./menuLink/menuLink";
 import styles from "./sidebar.module.css";
-import { FaUser, FaUsers } from "react-icons/fa6";
+import { FaBriefcase, FaMoneyBill1, FaMoneyBillTransfer, FaMoneyBillTrendUp, FaSackDollar, FaUser, FaUsers } from "react-icons/fa6";
 import { RiMoneyDollarCircleFill } from "react-icons/ri";
 import {
   
   MdAnalytics, 
+  MdAttachMoney, 
+  MdBarChart, 
   MdDashboard,
   MdHelpCenter,
   MdLogout,
-  MdOutlineSettingsApplications,
-  MdPeople, 
-  MdShoppingBag,
-  MdSupervisedUserCircle, 
+  MdNoTransfer,
+  MdOutlineSettingsApplications, 
+  MdShoppingBag, 
   MdWork,
 } from "react-icons/md";
 const menuItems = [
   {
-    title: "Pages",
+    title: "General Information",
     list: [
       {
         title: "Dashboard ",
         icon: <MdDashboard size={15}/>,
         path: "/usersdashboard",
+      },
+      {
+        title: "Transactions",
+        icon: <RiMoneyDollarCircleFill size={15}/>,
+        path: "/usersdashboard/transactions",
       }, 
+      
+    ],
+  },
+
+  {
+    title: "Invest",
+    list: [
       {
         title: "Package",
         icon: <MdShoppingBag size={15}/>,
         path: "/usersdashboard/package",
       },
       {
-        title: "Transactions",
-        icon: <RiMoneyDollarCircleFill size={15}/>,
-        path: "/usersdashboard/transactions",
+        title: "Invest History",
+        icon: <MdBarChart size={15}/>,
+        path: "/usersdashboard/investment",
       },
+      
     ],
   },
   {
-    title: "Analytics",
+    title: "Transfer $ Withdraw",
     list: [
       {
-        title: "Revenue",
-        icon: <MdWork size={15}/>,
-        path: "userdashboard/revenue",
+        title: "Transfer",
+        icon: <FaMoneyBillTransfer size={15}/>,
+        path: "usersdashboard/transfer",
       },
       {
-        title: "Reports",
-        icon: <MdAnalytics size={15}/>,
-        path: "userdashboard/reports",
+        title: "Withdraw",
+        icon: <FaSackDollar size={15}/>,
+        path: "usersdashboard/withdraw",
       },
       {
-        title: "Referrer",
-        icon: <FaUsers size={15}/>,
-        path: "userdashboard/teams",
+        title: "recieve Money",
+        icon: <FaMoneyBill1 size={15}/>,
+        path: "usersdashboard/recievemoney",
+      },
+    ],
+  },
+
+  {
+    title: "Deposits & Payouts",
+    list: [
+      {
+        title: "create Deposit",
+        icon: <FaBriefcase size={15}/>,
+        path: "usersdashboard/deposits",
+      },
+      {
+        title: "Payouts",
+        icon: <FaMoneyBill1 size={15}/>,
+        path: "usersdashboard/payouts",
+      }, 
+      {
+        title: "Payout History",
+        icon: <FaMoneyBillTrendUp size={15}/>,
+        path: "usersdashboard/payouthistory",
       },
     ],
   },
@@ -62,18 +97,18 @@ const menuItems = [
       {
         title: "Profile",
         icon: <FaUser size={15} />,
-        path: "userdashboard/profile",
+        path: "usersdashboard/profile",
       },
       {
         title: "help",
         icon: <MdHelpCenter size={15}/>,
-        path: "userdashboard/help",
+        path: "usersdashboard/help",
       },
       {
         title: "Settings",
         icon: <MdOutlineSettingsApplications size={15}/>,
-        path: "userdashboard/settings",
-      }, 
+        path: "usersdashboard/settings",
+      },  
     ],
   },
 ];

@@ -1,7 +1,7 @@
 .container {
     background-color: var(--bglight);
     border-radius: 1rem;
-    padding: 2rem;
+    padding: 2rem; 
     box-shadow: var(--shadow);
 }
 

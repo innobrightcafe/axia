@@ -1,4 +1,5 @@
 "use server";
+import { url } from "inspector";
 import { revalidatePath } from "next/cache";
 import { redirect } from "next/navigation";
 
@@ -17,24 +18,63 @@ export const fetchUsers = async () => {
   }
 };
 
+
+
 export const fetchPackage = async () => {
+  const email = "innobrightcafe@gmail.com";
+
   try {
-    const apiUrl = `${process.env.APIURL}/all`;
-    // Fetch data from API endpoint
-    const Data = await fetch(apiUrl, {
-      cache: "no-store",
+    const apiUrl = `${process.env.APIURL}/investmentPackage`;
+
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: new URLSearchParams({ email }), 
     });
 
-    const data = await Data.json();
+    console.log("Response Status Code:", response.status);
+    
+const resultText = await response.text();
+console.log("Response Text:", resultText);
+const result = await response.json();
+console.log("Parsed JSON:", result);
 
-    console.log(data);
-
-    return data;
+    return result;
   } catch (error) {
     console.error("Error fetching data from API:", error.message);
     throw new Error("API data fetching error");
   }
 };
+
+// export const fetchPackage = async () => {
+//   const email = "Innobrightcafe@gmail.com";
+
+//   try {
+    
+//     let urlEncoded = new URLSearchParams(email)
+//     console.log(email);
+//     const apiUrl = `${process.env.APIURL}/investmentPackage`;
+//     const response = await fetch(apiUrl, {
+//       method: "GET",
+//       headers: {
+//         "Content-Type": "application/x-www-form-urlencoded",
+//       },
+//       body: email,
+//     });
+//     const result = await response.json(); 
+
+//     console.log(result);
+
+//     return result;
+//   } catch (error) {
+//     console.error("Error fetching data from API:", error.message);
+//     throw new Error("API data fetching error");
+//   }
+// };
+
+
 
 export const authenticateUser = async (formData) => {
   const username = formData.get("username");
@@ -64,22 +104,10 @@ export const authenticateUser = async (formData) => {
   }
 };
 
-export const addUser = async (formData) => {
-  const username = formData.get("username");
-  const email = formData.get("email");
-  const password = formData.get("password");
-  const confirmPassword = formData.get("confirmPassword");
-
+export const addUser = async (formData) => { 
   console.log(formData);
 
   try {
-    // Create a user object
-    // const newUser = {
-    //   username,
-    //   email,
-    //   password,
-    //   confirmPassword,
-    // };
     const newUser = formData;
     const urlEncoded = new URLSearchParams(newUser).toString();
 
@@ -105,6 +133,35 @@ export const addUser = async (formData) => {
   } catch (err) {
     console.log(err);
     throw new Error("Failed to add user");
+  }
+};
+
+
+
+
+export const addPackage = async (formData) => {  
+
+  console.log(formData);
+
+  try {
+    const newPackage = formData;
+    const urlEncoded = new URLSearchParams(newPackage).toString();
+    console.log(newPackage);
+    // Send the user data to the API
+    const apiUrl = `${process.env.APIURL}/admin`;
+    const response = await fetch(apiUrl, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/x-www-form-urlencoded",
+      },
+      body: urlEncoded,
+    }); 
+    const result = await response.json();
+    console.log(result);
+    return result;
+  } catch (err) {
+    console.log(err);
+    throw new Error("Failed to add package");
   }
 };
 
@@ -155,42 +212,42 @@ export const addUser = async (formData) => {
 //   redirect("/dashboard/login");
 // };
 
-export const userRegistration = async (formData) => {
-  const username = formData.get("username");
-  const email = formData.get("email");
-  const password = formData.get("password");
-  const confirmPassword = formData.get("confirmPassword");
-  try {
-    if (!password || !confirmPassword || !email || !username) return;
+// export const userRegistration = async (formData) => {
+//   const username = formData.get("username");
+//   const email = formData.get("email");
+//   const password = formData.get("password");
+//   const confirmPassword = formData.get("confirmPassword");
+//   try {
+//     if (!password || !confirmPassword || !email || !username) return;
 
-    // Create a user object
-    const newUser = {
-      username,
-      email,
-      password,
-      confirmPassword,
-    };
-    // Send the user data to the API
-    const apiUrl = `${process.env.APIURL}/signup`;
-    const response = await fetch(apiUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(newUser),
-    });
+//     // Create a user object
+//     const newUser = {
+//       username,
+//       email,
+//       password,
+//       confirmPassword,
+//     };
+//     // Send the user data to the API
+//     const apiUrl = `${process.env.APIURL}/signup`;
+//     const response = await fetch(apiUrl, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/json",
+//       },
+//       body: JSON.stringify(newUser),
+//     });
 
-    if (!response.ok) {
-      throw new Error("Failed to connect to API. Please try again.");
-    }
-    // Handle response
-    const result = await response.json();
-    return result;
-  } catch (err) {
-    console.log(err);
-    throw new Error("failed to register user!");
-  }
-};
+//     if (!response.ok) {
+//       throw new Error("Failed to connect to API. Please try again.");
+//     }
+//     // Handle response
+//     const result = await response.json();
+//     return result;
+//   } catch (err) {
+//     console.log(err);
+//     throw new Error("failed to register user!");
+//   }
+// };
 
 // export const onSubmit = async (event, setIsLoading, setError) => {
 //   event.preventDefault();

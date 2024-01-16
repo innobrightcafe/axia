@@ -4,7 +4,7 @@ import Image from "next/image";
 import Link from "next/link";
 import styles from "../../ui/dashboard/packages/packages.module.css";
 import Pagination from "../../ui/dashboard/pagination/pagination"; 
-import { deletePackage, fetchPackage } from "../../lib/actions";  
+import { deletePackage, fetchPackage} from "../../lib/actions";  
 
 
 
@@ -13,7 +13,6 @@ import { deletePackage, fetchPackage } from "../../lib/actions";
 //   const page = searchParams?.page || 1;
 //   const { total_page } = await fetchDataFromAPI(q, page);
 const packageData = await fetchPackage()
-  console.log(packageData)
 
   return (
     <div>
@@ -24,32 +23,7 @@ const packageData = await fetchPackage()
             <Button props="Add New" />
           </Link>
         </div>
-        <div className={styles.package}>
-          {packageData.map((pkg) => (
-            <div className={styles.packageIn} key={pkg.id}>
-              <h2>{pkg.packageName}</h2>
-              <div className={styles.packageimg}>
-                <Image
-                  src={pkg.img || "/undraw_bitcoin_p2p_re_1xqa.svg"}
-                  alt="user"
-                  width={50}
-                  height={50}
-                  className={styles.packageImage}
-                />
-              </div>
-
-              <div className={styles.packageBody}>
-                <h1>
-                  ${pkg.amount} <span> For {pkg.period} days</span>
-                </h1>
-                <h3>ROI at {pkg.roi}%/M</h3>
-
-                <p>{pkg.desc}</p>
-                <Button props="Subscribe" />
-              </div>
-            </div>
-          ))}
-        </div>
+        
         <table className={styles.table}>
           <thead>
             <tr>
@@ -77,11 +51,11 @@ const packageData = await fetchPackage()
                     {pkg.packageName}
                   </div>
                 </td>
-                <td> {pkg.desc}</td>
+                <td> {pkg.description}</td>
                 <td>{pkg.amount}</td>
-                <td>{pkg.roi}%</td>
+                <td>{pkg.ROI}%</td>
                 <td>{pkg.period}Days</td>
-                <td>{pkg.createdAt?.toString().slice(4, 16)}</td>
+                <td>{pkg.investmentDate?.toString().slice(4, 16)}</td>
                 <td>
                   <div className={styles.buttons}>
                     <Link href={`/dashboard/package/${pkg.id}`}>

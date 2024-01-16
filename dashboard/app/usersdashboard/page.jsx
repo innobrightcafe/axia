@@ -4,6 +4,8 @@ import styles from '../ui/dashboard/dashboard.module.css'
 import Rightbar from '../ui/dashboard/rightbar/rightbar'
 import Transactions from '../ui/dashboard/transactions/transactions'
 import Chart from '../ui/dashboard/chart/chart'
+import StatCard from '../ui/userdashboard/cards/statCard'
+import Copy from '../ui/userdashboard/cards/copy'
    
 
 const page = () => {
@@ -11,9 +13,12 @@ const page = () => {
     <div className={styles.wrapper}>
       <div className={styles.main}>     
     <div className={styles.cards}>
-      <Card/>
-      <Card/>
+   
+      <Card/> 
+      <StatCard/> 
+       
     </div>
+    <Copy />
     <Transactions />
     <Chart/>
     </div>

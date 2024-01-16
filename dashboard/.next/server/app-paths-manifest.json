@@ -1,1 +1,7 @@
-{}
+{
+  "/page": "app/page.js",
+  "/usersdashboard/transfer/page": "app/usersdashboard/transfer/page.js",
+  "/usersdashboard/transactions/page": "app/usersdashboard/transactions/page.js",
+  "/usersdashboard/package/page": "app/usersdashboard/package/page.js",
+  "/usersdashboard/withdraw/page": "app/usersdashboard/withdraw/page.js"
+}

@@ -1,0 +1,134 @@
+.container {
+  background-color: var(--bglight);
+  padding: 1rem;
+  border-radius: 1rem;
+  margin-top: 2rem;
+  box-shadow: var(--shadow);
+}
+
+.top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.table {
+  width: 100%;
+}
+
+.table th {
+  padding: 1rem;
+  text-align: center;
+  border-bottom: 2px solid var(--btn);
+  border-radius: 1rem;
+}
+
+.table td {
+  border-radius: 1rem;
+  padding: 2rem;
+}
+
+.table td:nth-child(1) {
+  text-align: center;
+  border-radius: 50%;
+  color: var(--text);
+  font-weight: 700;
+  font-size: 1.5rem;
+}
+
+.packageImage {
+  display: flex;
+  overflow: hidden;
+  width: 8rem;
+  height: 8rem;
+  object-fit: cover;
+}
+
+.buttons {
+  display: flex;
+  gap: 1rem;
+}
+
+.button {
+  padding: 0.5rem 1rem;
+  border-radius: 0.5rem;
+  border: none;
+  cursor: pointer;
+  transition: all 0.5s ease;
+}
+
+.view {
+  background-color: teal;
+  color: var(--bg);
+}
+
+.delete {
+  background-color: crimson;
+  color: var(--bg);
+}
+
+.package {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2rem;
+  justify-content: center; 
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+.packages {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: nowrap; 
+  padding: 2rem;
+  margin-bottom: 3rem;
+}
+
+.packageIn {
+  display: flex;
+  flex-direction: column;
+  border-bottom: 1px solid var(--btn);
+  border-right: 1px solid var(--btn);
+  border-radius: 1rem;
+  padding: 1rem;
+  box-shadow: var(--shadow); 
+  background-color: var(--bg);
+}
+
+.packageBody {
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+  text-align: center;
+}
+
+.packageIn h2 {
+  text-align: center;
+  font-size: 2rem;
+  font-weight: 700;
+  color: var(--btn);
+}
+
+.packageimg {
+  align-items: center;
+  justify-content: center;
+  display: flex;
+  overflow: hidden;
+  margin-top: 1rem;
+}
+
+.packageBody h3 {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--btn);
+}
+
+.packageBody span {
+  font-size: 1.5rem;
+  font-weight: 500;
+  color: var(--btn);
+}
