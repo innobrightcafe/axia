@@ -22,7 +22,6 @@ import {
   adminValidator,
   adminValidationResult,
 } from "../middlewares/validators/adminInput.js";
-
 // declaring router
 const router = express.Router();
 
