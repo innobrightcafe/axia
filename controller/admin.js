@@ -9,9 +9,11 @@ export async function admin(req, res) {
   const ROI = req.body.ROI;
   const period = req.body.period;
   const description = req.body.description;
+  const amount = req.body.amount;
   const pass = true;
 
-  const dataPass = packageName && ROI && period && description && pass;
+  const dataPass =
+    packageName && ROI && period && description && amount && pass;
   console.log("dataPass", dataPass);
 
   const adminData = {
@@ -19,6 +21,7 @@ export async function admin(req, res) {
     packageName,
     ROI,
     period,
+    amount,
   };
 
   //set to default value if nothing was provided

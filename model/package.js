@@ -11,6 +11,7 @@ const packageSchema = new mongoose.Schema({
       packageName: { type: String, default: "None", unique: true },
       ROI: { type: Number, default: 0 },
       period: { type: Number, default: 0 },
+      amount: { type: Number, default: 0 },
     },
   ],
 });
