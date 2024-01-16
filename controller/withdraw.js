@@ -94,12 +94,18 @@ export const moveFundsToBal = async (req, res) => {
       if (value[0].ROI > 0) {
         if (value[0].ROI >= amount) {
           const changeROI = value[0].ROI - amount;
-          const changeBal = changeROI + value[0].balance;
+          const changeBal =
+            parseFloat(amount) + parseFloat(value[0].investmentAmount);
+
+          //   console.log(changeBal);
+          //   console.log("Amount: ", amount);
+          //   console.log("Investment-Amount: ");
 
           await User.findOneAndUpdate(
             { email },
-            { $set: { balance: changeBal, ROI: changeROI } }
+            { $set: { investmentAmount: changeBal, ROI: changeROI } }
           );
+          return res.send({ message: "Transaction Successful." });
         } else {
           return res.send({ message: "Insufficient Balance." });
         }
