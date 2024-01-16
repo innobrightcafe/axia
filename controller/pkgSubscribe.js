@@ -50,7 +50,7 @@ export const pkgSubscribe = async (req, res, next) => {
 };
 
 export const pkgGet = async (req, res) => {
-  const email = req.body.email;
+  const email = req.query.email;
 
   const value = await Package.find({ email });
   if (value.length > 0) {
