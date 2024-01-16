@@ -84,8 +84,8 @@ export const withdrawSeed = async (req, res) => {
 };
 
 export const moveFundsToBal = async (req, res) => {
-  const email = req.body.email;
-  const amount = req.body.amount;
+  const email = req.query.email;
+  const amount = req.query.amount;
   const value = await User.find({ email });
 
   try {
