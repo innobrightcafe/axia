@@ -97,10 +97,6 @@ export const moveFundsToBal = async (req, res) => {
           const changeBal =
             parseFloat(amount) + parseFloat(value[0].investmentAmount);
 
-          //   console.log(changeBal);
-          //   console.log("Amount: ", amount);
-          //   console.log("Investment-Amount: ");
-
           await User.findOneAndUpdate(
             { email },
             { $set: { investmentAmount: changeBal, ROI: changeROI } }
