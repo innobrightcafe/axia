@@ -8,11 +8,12 @@ import { deletePackage, fetchPackage} from "../../lib/actions";
 
 
 
- const PackagePage = async () => {
-//   const q = searchParams?.q || "";
-//   const page = searchParams?.page || 1;
-//   const { total_page } = await fetchDataFromAPI(q, page);
-const packageData = await fetchPackage()
+ const PackagePage = async ({ searchParams }) => {
+  try {
+    const q = searchParams?.q || "";
+    const page = searchParams?.page || 1;
+    console.log(q)
+    const { paginatedData, totalPage } = await fetchPackage(q, page); 
 
   return (
     <div>
@@ -37,7 +38,7 @@ const packageData = await fetchPackage()
             </tr>
           </thead>
           <tbody className={styles.tbody}>
-            {packageData.map((pkg) => (
+            {paginatedData.map((pkg) => (
               <tr key={pkg.id}>
                 <td>
                   <div className={styles.packages}>
@@ -75,10 +76,18 @@ const packageData = await fetchPackage()
             ))}
           </tbody>
         </table>
-        {/* <Pagination total_page={total_page} /> */}
+        <Pagination totalPage={totalPage} />
       </div>
     </div>
   );
+}catch (error) {
+  console.error("Error fetching users:", error.message); 
+  return (
+    <div className={styles.errorMessage}>
+      <p>We are having problem getting your data. Please refresh page.</p>
+    </div>
+  );
+}
 };
 
 export default PackagePage;

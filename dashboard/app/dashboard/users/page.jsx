@@ -5,13 +5,14 @@ import Link from "next/link";
 import Button from "../../ui/uis/button";
 import Image from "next/image";
 import Pagination from "../../ui/dashboard/pagination/pagination"; 
-import { deleteUser, fetchUsers } from "../../lib/actions"; 
+import { deleteUser, fetchUsers } from "../../lib/actions";  
 
-const UsersPage = async () => {
-  // const q = "";  
-  // const page = 1;  
-  const users = await fetchUsers();
-  console.log(users);
+const UsersPage = async ({ searchParams }) => { 
+  try {
+  const q = searchParams?.q || "";
+  const page = searchParams?.page || 1;
+  console.log(q)
+  const { paginatedData, totalPage } = await fetchUsers(q, page); 
   return (
     <div className={styles.container}>
       <div className={styles.top}>
@@ -32,9 +33,9 @@ const UsersPage = async () => {
           </tr>
         </thead>
         <tbody >
-          {users.map((user) => (
-            <tr key={user.id} >
-              <td>
+          {paginatedData.map((user) => (
+            <tr key={user.id}>
+              <td >
                 <div className={styles.user}>
                   <Image
                     src={user.img || "/noavatar.png"}
@@ -82,9 +83,18 @@ const UsersPage = async () => {
           ))}
         </tbody>
       </table>
-      <Pagination/>
+      <Pagination totalPage={totalPage}/>
     </div>
   );
+  }catch (error) {
+    console.error("Error fetching users:", error.message); 
+    return (
+      <div className={styles.errorMessage}>
+        <p>we are having problem with getting your data. Please refresh page.</p>
+      </div>
+    );
+  }
+  
 };
 
 export default UsersPage;

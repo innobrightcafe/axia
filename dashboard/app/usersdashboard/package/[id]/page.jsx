@@ -11,7 +11,7 @@ const SinglePackagePage = async ({ params }) => {
     <div className={styles.container}>
       <div className={styles.infoContainer}>
         <div className={styles.imgContainer}>
-          <Image src={packaged.img || "/noavatar.png"} alt="package" fill />
+          <Image src="/noavatar.png" alt="package" fill />
         </div>
         {packaged.packageName}
       </div>

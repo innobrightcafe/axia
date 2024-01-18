@@ -1,12 +1,13 @@
-import { updateUser } from "../../../lib/actions";
-import { fetchUserId } from "../../../lib/data";
+import { fetchUsers, updateUser } from "../../../lib/actions";
 import styles from "../../../ui/dashboard/users/SingleUser/SingleUser.module.css";
 import Image from "next/image"; 
 
-const SingleUserPage = async ({params}) => {
-  const { id } = params 
-  const user = await fetchUserId(id);
+const SingleUserPage = async (id) => {  
+  const q = searchParams?.q || "";
+  const page = searchParams?.page || 1;
+  const { total_page } = await fetchDataFromAPI(q, page);
 
+const users = await fetchUsersByID(id);
 
   return (
     <div className={styles.container}>
@@ -14,16 +15,16 @@ const SingleUserPage = async ({params}) => {
         <div className={styles.imgContainer}>
           <Image src=  {user.img || "/noavatar.png"} alt="user" fill />
         </div>
-        {user.username}
+        {users.usersname}
       </div>
       <div className={styles.formContainer}>
-        <form action={updateUser} className={styles.form}>
-          <input type="hidden" name="id" value={user.id} />
-          <label htmlFor="username">Username</label>
+        <form action={updateusers} className={styles.form}>
+          <input type="hidden" name="id" value={users.id} />
+          <label htmlFor="usersname">usersname</label>
           <input
             type="text"
-            name="username"
-            id="username"
+            name="usersname"
+            id="usersname"
             placeholder="name"
           />
           <label htmlFor="email">Email</label>
@@ -31,14 +32,14 @@ const SingleUserPage = async ({params}) => {
             type="email"
             name="email"
             id="email"
-            placeholder={user.email}
+            placeholder={users.email}
           />
           <label htmlFor="password">Password</label>
           <input
             type="text"
             name="password"
             id="password"
-            placeholder={user.password}
+            placeholder={users.password}
           />
           <label htmlFor="phone">Phone</label>
           <input type="phone" name="phone" id="phone" placeholder="phone" />
@@ -47,17 +48,17 @@ const SingleUserPage = async ({params}) => {
             type="text"
             name="adress"
             id="address"
-            placeholder={user.address}
+            placeholder={users.address}
           />
           <label htmlFor="isAdmin">Account type</label>
           <select name="isAdmin" id="isAdmin">
-            <option value={true} selected={user.isAdmin}>Admin</option>
-            <option value={false} selected={!user.isAdmin}>user</option>
+            <option value={true} selected={users.isAdmin}>Admin</option>
+            <option value={false} selected={!users.isAdmin}>users</option>
           </select>
           <label htmlFor="Activity"></label>
           <select name="isActive" id="isActive">
-            <option value={true} selected={user.isActive}>Active</option>
-            <option value={false} selected={!user.isInactive}>Inactive</option>
+            <option value={true} selected={users.isActive}>Active</option>
+            <option value={false} selected={!users.isInactive}>Inactive</option>
           </select>
           <button type="submit">Update</button>
         </form>

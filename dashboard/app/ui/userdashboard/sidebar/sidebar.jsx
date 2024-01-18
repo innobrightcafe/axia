@@ -45,7 +45,7 @@ const menuItems = [
       {
         title: "Invest History",
         icon: <MdBarChart size={15}/>,
-        path: "/usersdashboard/investment",
+        path: "usersdashboard/investment",
       },
       
     ],

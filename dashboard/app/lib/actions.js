@@ -1,9 +1,80 @@
-"use server";
-import { url } from "inspector";
+"use server"; 
 import { revalidatePath } from "next/cache";
+import  { Redirects } from './myclients';
 import { redirect } from "next/navigation";
 
-export const fetchUsers = async () => {
+export const fetchUsers = async (q, page) => {
+  const regex = new RegExp(q, 'i');
+  const PAGE_ITEM = 4;
+  try {
+    const apiUrl = `${process.env.APIURL}/all`;
+    // Fetch data from API endpoint
+    const res = await fetch(apiUrl, {
+      cache: 'no-store',
+    });
+    const data = await res.json({username: { $regex: regex } }); 
+    const filterUsers = data.filter((user) => regex.test(user.username));
+    console.log(filterUsers)
+    const totalPage = Math.ceil(filterUsers.length / PAGE_ITEM);
+    const paginatedData = filterUsers.slice((page - 1) * PAGE_ITEM, page * PAGE_ITEM);
+    return { paginatedData, totalPage };
+  } catch (error) {
+    console.error('Error fetching data from API:', error.message);
+    throw new Error('API data fetching error');
+  }
+};
+
+export const fetchPackage = async (q, page) => { 
+  const regex = new RegExp(q, 'i');
+  const PAGE_ITEM = 4;
+  try {
+    const admin = 'innobrightcafe@gmail.com'
+    const apiUrl = `${process.env.APIURL}/admin`;
+    // Fetch data from API endpoint
+    const res = await fetch(apiUrl, {
+      method: 'POST',
+    body: JSON.stringify(admin),
+    })
+
+    const data = await res.json({packageName: { $regex: regex } }); 
+    console.log(data)
+    const filterPackage = data.filter((pkg) => regex.test(pkg.packageName));
+    console.log(filterPackage)
+    const totalPage = Math.ceil(filterPackage.length / PAGE_ITEM);
+    const paginatedData = filterPackage.slice((page - 1) * PAGE_ITEM, page * PAGE_ITEM);
+    return { paginatedData, totalPage };
+  } catch (error) {
+    console.error("Error fetching data from API:", error.message);
+    throw new Error("API data fetching error");
+  }
+};
+
+
+
+
+export const fetchUsersByID = async () => {
+  try {
+    const apiUrl = `${process.env.APIURL}/all/`;
+    // Fetch data from API endpoint
+    const res = await fetch(apiUrl);
+    const users = await res.json();
+    console.log(users);
+    // Find the user with the specified ID
+    const user = users.find(_id);
+    console.log(user)
+
+    
+    return user;
+  } catch (error) {
+    console.error("Error fetching data from API:", error.message);
+    throw new Error("API data fetching error");
+  }
+};
+
+
+
+
+export const fetchROItoBal = async () => {
   try {
     const apiUrl = `${process.env.APIURL}/all`;
     // Fetch data from API endpoint
@@ -11,6 +82,8 @@ export const fetchUsers = async () => {
       cache: "no-store",
     });
     const data = await Data.json();
+    console.log(data)
+
     return data;
   } catch (error) {
     console.error("Error fetching data from API:", error.message);
@@ -20,33 +93,35 @@ export const fetchUsers = async () => {
 
 
 
-export const fetchPackage = async () => {
-  const email = "innobrightcafe@gmail.com";
+// export const fetchPackage = async () => {
+//   const email = "innobrightcafe@gmail.com";
 
-  try {
-    const apiUrl = `${process.env.APIURL}/investmentPackage`;
+//   try {
+//     const apiUrl = `${process.env.APIURL}/investmentPackage`;
 
-    const response = await fetch(apiUrl, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/x-www-form-urlencoded",
-      },
-      body: new URLSearchParams({ email }), 
-    });
+//     const response = await fetch(apiUrl, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/x-www-form-urlencoded",
+//       },
+//       body: new URLSearchParams({ email }), 
+//     });
 
-    console.log("Response Status Code:", response.status);
+//     console.log("Response Status Code:", response.status);
     
-const resultText = await response.text();
-console.log("Response Text:", resultText);
-const result = await response.json();
-console.log("Parsed JSON:", result);
+// const resultText = await response.text();
+// console.log("Response Text:", resultText);
+// const result = await response.json();
+// console.log("Parsed JSON:", result);
 
-    return result;
-  } catch (error) {
-    console.error("Error fetching data from API:", error.message);
-    throw new Error("API data fetching error");
-  }
-};
+//     return result;
+//   } catch (error) {
+//     console.error("Error fetching data from API:", error.message);
+//     throw new Error("API data fetching error");
+//   }
+// };
+
+
 
 // export const fetchPackage = async () => {
 //   const email = "Innobrightcafe@gmail.com";
@@ -92,12 +167,12 @@ export const authenticateUser = async (formData) => {
       },
       body: urlEncoded,
     });
-
+// result.success && redirect("/usersdashboard");
     const result = await response.json();
     console.log("result: ", result.success);
-    !result.success === false && redirect("/usersdashboard");
+    !result.success === false && <Redirects url='/usersdashboard' />;
 
-    // result.success && redirect("/usersdashboard");
+    
   } catch (err) {
     console.log(err);
     throw new Error("failed to login");
@@ -106,6 +181,7 @@ export const authenticateUser = async (formData) => {
 
 export const addUser = async (formData) => { 
   console.log(formData);
+  
 
   try {
     const newUser = formData;
@@ -121,20 +197,62 @@ export const addUser = async (formData) => {
       },
       body: urlEncoded,
     });
-
-    if (!response.ok) {
+      if (!response.ok) {
       const errorData = await response.json();
       throw new Error(`Failed to add user. Server error: ${errorData.message}`);
     }
-    // Handle response
+    
     const result = await response.json();
-    console.log(result);
-    return result;
+    // result.success && redirect("/login");
+    
+    console.log("result: ", result.success); 
+    !result.success === false && redirect('/login');
+      
   } catch (err) {
     console.log(err);
     throw new Error("Failed to add user");
   }
+  
 };
+
+// export const addUser = async (formData) => { 
+//   console.log(formData);
+  
+
+//   try {
+//     const newUser = formData;
+//     const urlEncoded = new URLSearchParams(newUser).toString();
+
+//     console.log(newUser);
+//     // Send the user data to the API
+//     const apiUrl = `${process.env.APIURL}/signup`;
+//     const response = await fetch(apiUrl, {
+//       method: "POST",
+//       headers: {
+//         "Content-Type": "application/x-www-form-urlencoded",
+//       },
+//       body: urlEncoded,
+//     });
+
+//     if (!response.ok) {
+//       const errorData = await response.json();
+//       throw new Error(`Failed to add user. Server error: ${errorData.message}`);
+//     }
+    
+
+//     // result.success && redirect("/usersdashboard");
+//     const result = await response.json();
+//     console.log("result: ", result.success); 
+//     if (result.success) { 
+//       redirect('/usersdashboard');
+//     }
+
+//   } catch (err) {
+//     console.log(err);
+//     throw new Error("Failed to add user");
+//   }
+  
+// };
 
 
 
