@@ -8,6 +8,7 @@
 }
 
 .button {
+    display: flex;
     padding: 0.5rem 1rem;
     border-radius: 0.5rem;
     border: none;
@@ -20,5 +21,13 @@
 .button:hover {
     background-color: var(--btnHover);
     box-shadow: var(--shadow);
+}
+
+.icon {
+    margin-right: .3rem; 
+    text-align: left; 
+    margin-top: .3rem;
+     
+
 }
 

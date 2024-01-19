@@ -1,12 +1,13 @@
+import Link from "next/link";
 import { addUser } from "../../../lib/actions";
 import styles from "../../dashboard/register/register.module.css";
 
 export default async function Register() {
-  return (
+  return ( 
     <div className={styles.container}>
       <div className={styles.formContainer}>
         <h1 className={styles.header}> Hello!</h1>
-        <p className="text-md mb-7 font-normal text-gray-600">
+        <p className="text-md mb-7  text-gray-600">
           Dont have an account? Please register to continue.
         </p>
 
@@ -92,12 +93,49 @@ export default async function Register() {
               placeholder="Confirm Password"
             />
           </div>
-          <button className={styles.button} type="submit">
-            Register
-          </button>
-          <span className="m-3  cursor-pointer text-ms hover:text-[#FF4300]">
-            Forgot Password ?
-          </span>
+           
+
+          <div className="mb-5 inline-flex items-start">
+            <input
+              type="checkbox"
+              id="checkbox"
+              className="mr-1 bg-orange-500"
+            />
+            <label htmlFor="checkbox" className="text-sm text-gray-600">
+              I agree to the <Link href="#">Terms of Service</Link> and{" "}
+              <Link href="#">Privacy Policy.</Link>
+            </label>
+          </div>
+
+          <div>
+            {/* Button */}
+            <div className="d-grid">
+              <button
+                type="submit"
+                className="w-full p-4 bg-[#FF4300] text-white rounded-sm hover:bg-orange-600"
+              >
+                Create Free Account
+              </button>
+            </div>
+            <div className="flex justify-between mt-4">
+              <div className="mb-2">
+                <Link
+                  href="/login"
+                  className="text-lg text-[#FF4300]"
+                >
+                  Already a member? Login
+                </Link>
+              </div>
+              <div>
+                <Link
+                  href="/forgetPassword"
+                  className="text-lg text-[#FF4300]"
+                >
+                  Forgot your password?
+                </Link>
+              </div>
+            </div>
+          </div>
         </form>
       </div>
     </div>

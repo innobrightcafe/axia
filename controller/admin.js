@@ -3,7 +3,7 @@ import { Package } from "../model/package.js";
 import { validateAdmin } from "../middlewares/isAdmin.js";
 
 export async function admin(req, res) {
-  // declaration of input data
+  // declaration of input data 
   const email = req.body.email;
   const packageName = req.body.packageName;
   const ROI = req.body.ROI;
