@@ -3,13 +3,8 @@ import { timeGen } from "../middlewares/allocateTime.js";
 import { timeout } from "../middlewares/timeout.js";
 import { Package } from "../model/package.js";
 
-<<<<<<< HEAD
 export const pkgSubscribe = async (req, res) => {
-  try { 
-=======
-export const pkgSubscribe = async (req, res, next) => {
   try {
->>>>>>> 5e544162f35c0de1992e63b696ca8cc227b11989
     const pkg = req.query.package;
     const email = req.body.email;
     const duration = req.query.duration;
