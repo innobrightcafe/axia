@@ -51,4 +51,10 @@ _Response:_
 **PUT** /api/investment
 This endpoint is responsible for subscription of investment packages. The investment _package_ and _duration_ are parsed to the backend as query params.
 example:
-http://xx.com/investment/?package=Auto_Trading_&duration=1
+https://xx.com/api/investment/?email=okoriechinedu78@gmail.com&package=Auto_Trading_&duration=1&amount=200&interest=30
+
+_Request:_
+![Alt text](image-10.png)
+
+_Response:_
+![Alt text](image-11.png)
