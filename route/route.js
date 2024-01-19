@@ -36,6 +36,9 @@ router.get("/all", all);
 // get router - endpoint to obtain an information
 router.get("/myData", myData);
 
+//Get router - get investment packages.
+router.get("/investmentPackage", pkgGet);
+
 // post router for sign up
 router.post("/signup", validateSignUp, signUpResult, signup);
 
@@ -59,8 +62,5 @@ router.put("/withdrawSeed", withdrawSeed);
 
 // Withdraw route
 router.put("/ROItoBal", moveFundsToBal);
-
-//Get router - get investment packages.
-router.get("/investmentPackage", pkgGet);
 
 export default router;

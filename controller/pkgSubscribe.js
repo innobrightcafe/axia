@@ -6,7 +6,7 @@ import { Package } from "../model/package.js";
 export const pkgSubscribe = async (req, res) => {
   try {
     const pkg = req.query.package;
-    const email = req.body.email;
+    const email = req.query.email;
     const duration = req.query.duration;
     const interest = req.query.interest;
     const amount = req.query.amount;
