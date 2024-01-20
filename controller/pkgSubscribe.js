@@ -24,7 +24,7 @@ export const pkgSubscribe = async (req, res) => {
     // };
 
     const result = await User.find({ email });
-    if (result && paid) {
+    if (result.length > 0 && paid) {
       await User.findOneAndUpdate(
         { email },
         {
