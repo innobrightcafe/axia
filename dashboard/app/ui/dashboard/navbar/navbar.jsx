@@ -10,7 +10,8 @@ import {
   MdSearch,
 } from "react-icons/md";
 import Image from "next/image";
-import UserDropdown from '../../../ui/dashboard/navbar/dropdown'
+import { Dropdown } from '../../../ui/dashboard/navbar/dropdown'
+import { FaArrowTurnDown } from "react-icons/fa6";
 
 const Navbar = () => {
   const pathname = usePathname;
@@ -35,7 +36,7 @@ const Navbar = () => {
           <MdOutlineChat size={20} />
           <MdNotifications size={20} />
           <MdPublic size={20} /> 
-          Logout<MdLogout  size={20} /> 
+          <Dropdown/><FaArrowTurnDown className="transform -translate-x-3/4"/>
         </div>
       </div>
     </div>

@@ -1,6 +1,6 @@
 import React from "react";
 import { ImSpinner2 } from "react-icons/im";
-import styles from "./ui/LoadingSpinner.module.css";
+import styles from "../ui/LoadingSpinner.module.css";
   
 
 const LoadingSpinner = () => {

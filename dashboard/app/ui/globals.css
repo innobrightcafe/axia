@@ -644,7 +644,7 @@ iframe {
     color: #6c757d
 }
 
-.container,.container-fluid,.container-lg,.container-md,.container-sm,.container-xl,.container-xxl {
+/* .container,.container-fluid,.container-lg,.container-md,.container-sm,.container-xl,.container-xxl {
     --bs-gutter-x: 1.5rem;
     --bs-gutter-y: 0;
     width: 100%;
@@ -652,8 +652,8 @@ iframe {
     padding-left: calc(var(--bs-gutter-x) * .5);
     margin-right: auto;
     margin-left: auto
-}
-
+} */
+/* 
 @media (min-width: 576px) {
     .container,.container-sm {
         max-width:540px
@@ -683,7 +683,7 @@ iframe {
         max-width:1320px
     }
 }
-
+ */
 
  
 .row {
@@ -2458,7 +2458,7 @@ textarea.form-control-lg {
     margin-right: -1.5em;
     margin-left: 0
 }
-
+ 
 .form-check-input {
     width: 1em;
     height: 1em;
@@ -2474,7 +2474,7 @@ textarea.form-control-lg {
     appearance: none;
     -webkit-print-color-adjust: exact;
     forced-color-adjust: exact;
-    print-color-adjust: exact
+    print-color-adjust: exact 
 }
 
 .form-check-input[type=checkbox] {
@@ -4045,12 +4045,12 @@ textarea.form-control-lg {
     padding: var(--bs-navbar-padding-y) var(--bs-navbar-padding-x)
 }
 
-.navbar>.container,.navbar>.container-fluid,.navbar>.container-lg,.navbar>.container-md,.navbar>.container-sm,.navbar>.container-xl,.navbar>.container-xxl {
+/* .navbar>.container,.navbar>.container-fluid,.navbar>.container-lg,.navbar>.container-md,.navbar>.container-sm,.navbar>.container-xl,.navbar>.container-xxl {
     display: flex;
     flex-wrap: inherit;
     align-items: center;
     justify-content: space-between
-}
+} */
 
 .navbar-brand {
     padding-top: var(--bs-navbar-brand-padding-y);
@@ -5626,7 +5626,7 @@ textarea.form-control-lg {
     filter: invert(1) grayscale(100%) brightness(200%)
 }
 
-.toast {
+/* .toast {
     --bs-toast-zindex: 1090;
     --bs-toast-padding-x: 0.75rem;
     --bs-toast-padding-y: 0.5rem;
@@ -5652,28 +5652,28 @@ textarea.form-control-lg {
     border: var(--bs-toast-border-width) solid var(--bs-toast-border-color);
     box-shadow: var(--bs-toast-box-shadow);
     border-radius: var(--bs-toast-border-radius)
-}
-
+} */
+/* 
 .toast.showing {
     opacity: 0
 }
 
 .toast:not(.show) {
     display: none
-}
+} */
 
-.toast-container {
+/* .toast-container {
     --bs-toast-zindex: 1090;
     position: absolute;
     z-index: var(--bs-toast-zindex);
     width: max-content;
     max-width: 100%;
     pointer-events: none
-}
-
+} */
+/* 
 .toast-container>:not(:last-child) {
     margin-bottom: var(--bs-toast-spacing)
-}
+} */
 
 .toast-header {
     display: flex;

@@ -6,6 +6,7 @@
 }
 
 .form {
+    padding: 0 2rem;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
@@ -23,7 +24,7 @@
 }
 
 .form input, .form select {
-    width: 44%;
+    width: 49.5%;
 }
 
 .form textarea {

@@ -1,7 +1,7 @@
  
 import Link from "next/link";
 import Image from "next/image";
-import Register from "./ui/dashboard/register/register";
+import { Register } from "./ui/dashboard/register/page";
 
 export default function Home() {
   return (

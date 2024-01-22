@@ -47,4 +47,47 @@
   font-size: .5rem; 
 }
 
+/* dropdown menu. Path: dashboard/app/ui/dashboard/navbar/navbar.module.css */
+
+.dropdown {
+  position: relative; 
+  display: inline-block;
+  box-shadow: var(--shadow);
+  
+
+}
+
+.dropdownContent {
+  display: none; 
+  position: absolute;
+  background-color: var(--bg);
+  min-width: 10rem; 
+  padding: 1rem;
+  border-radius: 1rem;
+  right: .2rem;
+  box-shadow: var(--shadow); 
+  z-index: 1;
+}
+
+.dropdownContent p {
+  display: block;
+  padding: 1rem;
+  color: var(--text);
+  text-decoration: none;
+  text-align: left;
+}
+
+.dropdown:hover .dropdownContent {
+  display: block;
+}
+
+.dropbtn {
+  background-color: transparent;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+
+
+
 
