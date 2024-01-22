@@ -27,6 +27,7 @@ import {
   adminValidator,
   adminValidationResult,
 } from "../middlewares/validators/adminInput.js";
+import { isAuth } from "../middlewares/auth.js";
 // declaring router
 const router = express.Router();
 
@@ -34,10 +35,10 @@ const router = express.Router();
 router.get("/all", all);
 
 // get router - endpoint to obtain an information
-router.get("/myData", myData);
+router.get("/myData", isAuth, myData);
 
 //Get router - get investment packages.
-router.get("/investmentPackage", pkgGet);
+router.get("/investmentPackage", isAuth, pkgGet);
 
 // post router for sign up
 router.post("/signup", validateSignUp, signUpResult, signup);
@@ -49,18 +50,18 @@ router.post("/admin", adminValidator, adminValidationResult, admin);
 router.post("/login", validateLogin, loginResult, login);
 
 // delete router
-router.delete("/delete", validateDelete, deleteResult, deleteUser);
+router.delete("/delete", validateDelete, deleteResult, isAuth, deleteUser);
 
 //update router - endpoint to update.
-router.put("/investment/", pkgSubscribe);
+router.put("/investment/", isAuth, pkgSubscribe);
 
 // Withdraw route
-router.put("/withdrawROI", withdrawROI);
+router.put("/withdrawROI", isAuth, withdrawROI);
 
 // Withdraw route
-router.put("/withdrawSeed", withdrawSeed);
+router.put("/withdrawSeed", isAuth, withdrawSeed);
 
 // Withdraw route
-router.put("/ROItoBal", moveFundsToBal);
+router.put("/ROItoBal", isAuth, moveFundsToBal);
 
 export default router;
