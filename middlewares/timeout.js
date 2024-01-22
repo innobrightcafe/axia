@@ -27,7 +27,7 @@ async function deActiveTimeout(email) {
 async function updateBalance(email, amount) {
   // Check if the user exist
   const userAccount = await User.find({ email });
-  // console.log(userAccount);
+  console.log(userAccount);
 
   // amount += userAccount[0].ROI;
   const valueROI = userAccount[0].ROI;

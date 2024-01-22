@@ -6,25 +6,17 @@ import { Package } from "../model/package.js";
 export const pkgSubscribe = async (req, res) => {
   try {
     const pkg = req.query.package;
-    const email = req.query.email;
+    const user = req.user;
     const duration = req.query.duration;
     const interest = req.query.interest;
     const amount = req.query.amount;
     const paid = true;
+    const email = user.email;
 
     const { timeDiff, durSeconds, currentTime, setTime, currentDate, setDate } =
       timeGen(duration);
-    // const info = {
-    //   investmentPackage: pkg,
-    //   status: "active",
-    //   ROI: ROI,
-    //   investmentPeriod: duration,
-    //   investmentDate: currentDate,
-    //   expiryDate: setDate,
-    // };
 
-    const result = await User.find({ email });
-    if (result && paid) {
+    if (user && paid) {
       await User.findOneAndUpdate(
         { email },
         {
@@ -50,7 +42,7 @@ export const pkgSubscribe = async (req, res) => {
 };
 
 export const pkgGet = async (req, res) => {
-  const email = req.query.email;
+  const email = req.user.email;
 
   const value = await Package.find({ email });
   if (value.length > 0) {
