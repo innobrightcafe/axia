@@ -1,10 +1,9 @@
 import Image from "next/image";
 import styles from "./transactions.module.css";
-const InvestmentHistory = () => {
-  
+const InvestmentHistory = (ashan) => {
   return (
     <div className={styles.container}>
-      <h2 className={styles.title}>Latest Investments</h2>
+      <h2 className={styles.title}>{ashan.tittle}</h2>
       <table className={styles.table}>
         <thead>
           <tr>
@@ -17,23 +16,24 @@ const InvestmentHistory = () => {
         </thead>
         <tbody>
           <tr>
-            <td>Withdraw</td>
-            <td>WERSD343</td>
-            <td>$500</td>
-            <td>1/12/2023</td>
+            <td>{ashan.name}</td>
+            <td>{ashan.id}</td>
+            <td>{ashan.amount}</td>
+            <td>{ashan.date}</td>
             <td>
-              {/* <span>
-                  {user.isActive ? (
-                    <span className={`${styles.status} ${styles.active} `}>
-                      "Active"
-                    </span>
-                  ) : (
-                    <span className={`${styles.status} ${styles.inactive} `}>
-                      "Inactive"
-                    </span>
-                  )}
-                </span>*/}
-              Active
+              <span>
+                {ashan.isComplete ? (
+                  <span className={`${styles.status} ${styles.completed}`}>
+                    Complete
+                  </span>
+                ) : ashan.isProcessing ? (
+                  <span className={`${styles.status} ${styles.processing}`}>
+                    Processing
+                  </span>
+                ) : <span className={`${styles.status} ${styles.pending}`}>
+                Pending
+              </span>}
+              </span>
             </td>
           </tr>
         </tbody>

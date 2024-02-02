@@ -1,0 +1,16 @@
+.container{
+    background-color: var(--bglight);
+    padding: 1rem;
+    border-radius: 1rem;
+    margin-top: 2rem;
+    box-shadow: var(--shadow);
+}
+
+.box {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-wrap: wrap;
+    margin: 3rem;
+    gap: 1rem;
+}

@@ -1,17 +1,16 @@
-import React from "react";
-import { MdSupervisedUserCircle } from "react-icons/md";
-import styles from "./card.module.css"; 
+import React from "react"; 
+ import styles from "./card.module.css" 
+import {  FaSackDollar } from "react-icons/fa6";
 
-const Card = () => {
+const Card = (props) => {
   return (
     <div className={styles.container}>
-      <MdSupervisedUserCircle size={24} /> 
+      {props.icon} 
         <div className={styles.texts}>
-          <span className={styles.title}>Total Balance</span>
-          <span className={styles.number}>10000</span>
+          <span className={styles.title}>{props.tittle}</span>
+          <span className={styles.number}>{props.amount}</span>
           <span className={styles.details}>
-            <span className={styles.positive}>12%</span> more than previous week
-          </span>
+            <span className={styles.positive}>{props.details}</span></span>
         </div> 
     </div>
   );

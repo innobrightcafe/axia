@@ -14,6 +14,10 @@ import {
   MdSupervisedUserCircle,
   MdWork,
 } from "react-icons/md";
+import Link from "next/link";
+
+// const profileLink =  <Link href={`/dashboard/users/${user.id}`}/>
+
 const menuItems = [
   {
     title: "Pages",
@@ -66,7 +70,7 @@ const menuItems = [
       {
         title: "Profile",
         icon: <FaUser size={15} />,
-        path: "/dashboard/profile",
+        path: "/dashboard/user",
       },
       {
         title: "help",

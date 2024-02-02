@@ -7,7 +7,7 @@ const SingleUserPage = async (id) => {
   const page = searchParams?.page || 1;
   const { total_page } = await fetchDataFromAPI(q, page);
 
-const users = await fetchUsersByID(id);
+const users = await fetchDataFromAPI(id);
 
   return (
     <div className={styles.container}>

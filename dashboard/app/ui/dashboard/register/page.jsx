@@ -1,20 +1,35 @@
 'use client';
-import { useFormState }  from "react-dom"
-import { useEffect} from 'react';
+ import { useState} from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '../../dashboard/register/register.module.css';
 import { addUser } from '../../../lib/actions'; 
 import Link from 'next/link';
 
 export const Register = () => {
-   const router = useRouter();
-  const [state, formAction] = useFormState(
-    (previousState, formData) => addUser(previousState, formData, setError, setSuccess),
-  );
+  const router = useRouter();
+  const [error, setError] = useState('');
+  const [success, setSuccess] = useState(''); 
 
-  useEffect(() =>{
-    state?.success && router.push('/login')
-  },[state?.success, router])
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    try {
+      const { token, success } = await addUser({
+        username: e.target.username.value,
+        email: e.target.email.value,
+        password: e.target.password.value,
+        confirmPassword: e.target.confirmPassword.value,
+      });
+      setError('');
+    setSuccess(success);
+    if (success) {
+      document.cookie = `token=${token}; path=/`;
+      router.push('/dashboard');
+    } 
+  } catch (error) {
+    setError(error.message);
+    setSuccess('');
+  }
+  };
 
   return ( 
     <div className={styles.container}>
@@ -24,7 +39,7 @@ export const Register = () => {
           Dont have an account? Please register to continue.
         </p>
 
-        <form  action={formAction} className={styles.form}>
+        <form   onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.inputdiv}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -125,6 +140,8 @@ export const Register = () => {
 
           <div>
             {/* Button */}
+            {error && <div className="text-red-500 p-4 m-4 rounded-lg bg-red-200">{error}</div>}
+            {success && <div className="text-green-500 p-4 m-4 rounded-lg bg-green-200">{success}</div>}
             <div className="d-grid">
               <button
                 type="submit"
@@ -133,8 +150,7 @@ export const Register = () => {
                 Create Free Account
               </button>
             </div>
-            {state?.error && <div className="text-red-500">{state.error}</div>}
-            {state?.success && <div className="text-green-500">{state.success}</div>}
+           
             <div className="flex justify-between mt-4">
               <div className="mb-2">
                 <Link

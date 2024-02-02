@@ -55,6 +55,7 @@
 }
 
 .button {
+    display: flex;
     background-color: var(--btn);
     color: var(--bg);
     padding: 1rem;
@@ -69,4 +70,9 @@
 
 .button:hover {
     background-color: var(--btnHover);
+}
+
+.button svg {
+    margin-top: 3px;
+
 }

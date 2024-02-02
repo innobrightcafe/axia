@@ -42,7 +42,12 @@
     color: #2D9C6F;
 }
 
-.pending {
+.processing{
     background-color: #FCECEA;
     color: #FF5757;
+}
+
+.pending{
+    background-color: #daa52042;
+    color: #daa520;
 }

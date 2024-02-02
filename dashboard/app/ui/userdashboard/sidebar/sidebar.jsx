@@ -16,6 +16,7 @@ import {
   MdShoppingBag, 
   MdWork,
 } from "react-icons/md";
+import { signOut } from "../../../../auth";
 const menuItems = [
   {
     title: "General Information",
@@ -45,52 +46,33 @@ const menuItems = [
       {
         title: "Invest History",
         icon: <MdBarChart size={15}/>,
-        path: "usersdashboard/investment",
+        path: "/usersdashboard/investment",
       },
       
     ],
   },
   {
-    title: "Transfer $ Withdraw",
+    title: "Deposit $ Withdraw",
     list: [
       {
-        title: "Transfer",
-        icon: <FaMoneyBillTransfer size={15}/>,
-        path: "usersdashboard/transfer",
+        title: "Make Deposit",
+        icon: <FaBriefcase size={15}/>,
+        path: "/usersdashboard/deposits",
       },
       {
         title: "Withdraw",
         icon: <FaSackDollar size={15}/>,
-        path: "usersdashboard/withdraw",
-      },
+        path: "/usersdashboard/withdraw",
+      }, 
       {
-        title: "recieve Money",
-        icon: <FaMoneyBill1 size={15}/>,
-        path: "usersdashboard/recievemoney",
-      },
+        title: "Referer",
+        icon: <FaSackDollar size={15}/>,
+        path: "/usersdashboard/referer",
+      }, 
     ],
   },
 
-  {
-    title: "Deposits & Payouts",
-    list: [
-      {
-        title: "create Deposit",
-        icon: <FaBriefcase size={15}/>,
-        path: "usersdashboard/deposits",
-      },
-      {
-        title: "Payouts",
-        icon: <FaMoneyBill1 size={15}/>,
-        path: "usersdashboard/payouts",
-      }, 
-      {
-        title: "Payout History",
-        icon: <FaMoneyBillTrendUp size={15}/>,
-        path: "usersdashboard/payouthistory",
-      },
-    ],
-  },
+   
   {
     title: "User ",
     list: [
@@ -139,7 +121,14 @@ const Sidebar = () => {
           </li>
         ))}
       </ul>
+      <form
+      action={async() =>{
+        'use server'
+        await signOut()
+      }}
+      >
       <button className={styles.signout} ><MdLogout size={15}/>Signout</button>
+    </form>
     </div>
   );
 };

@@ -4,9 +4,12 @@ import './ui/globals.css'
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Baston Project Management Dashboard',
-  description: 'Invest with the smartest potfolio managment company and grow your potfolio. ',
-}
+  title: {
+    default: 'Baston Project Management',  
+    template: '%s | Dashboard', 
+  },
+  description: 'Invest with the smartest portfolio management company and grow your portfolio', // Description for the dashboard
+};
 
 export default function RootLayout({ children }) {
   return (

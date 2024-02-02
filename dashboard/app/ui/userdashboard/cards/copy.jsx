@@ -19,7 +19,7 @@ const Copy = () => {
           type="text"
           className="form-control form--control"
           readOnly
-          value="https://product.geniusocean.com/genius-hyip-light?reff=3266dcfa238c067719a09f1eabc4e1b4"
+          value="https://https://bastonprojectmanagement.com/?reff=3266dcfa238c067719a09f1eabc4e1b4"
           id="cronjobURL"
         />
         <button

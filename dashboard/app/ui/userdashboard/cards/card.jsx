@@ -2,21 +2,13 @@ import React from "react";
 import { FaMoneyCheckDollar } from "react-icons/fa6";
 import { BsPlusSquareDotted } from "react-icons/bs"; 
 import Link from "next/link"; 
-import { fetchROItoBal } from "../../../../lib/actions";
+ 
 
 
-const Card = async ({ roibalance }) => { 
-  console.log(roibalance);
-  
-  if (!roibalance) {
-      return <p>we are having a problem fetching your balance</p>;
-  }
-  console.log(roibalance);
-
+const Card = (props) => {  
   return (
     <> 
-        <div
-          key={roibalance.id}
+        <div 
           className="flex gap-3 flex-row-1 sm:flex-row-2 lg:flex-row-3"
         >
           <div className="balance-report__wrapper rounded-4 dashboard-single__box bg-[#ff4300] shadow-md  p-6 rounded-md">
@@ -26,7 +18,7 @@ const Card = async ({ roibalance }) => {
                   <span>
                     <FaMoneyCheckDollar className="m-1" />
                   </span>
-                  ${roibalance.balance}
+                   ${props.balance}
                 </h4>
                 <p className="text-gray-100">Monthly Income</p>
               </div>
@@ -53,20 +45,20 @@ const Card = async ({ roibalance }) => {
               <div className="group-inner">
                 <p className="text-gray-100">Amount Invested</p>
                 <h6 className="flex items-center text-2xl font-bold">
-                  <FaMoneyCheckDollar className="m-1" />${roibalance.investmentAmount}
+                  <FaMoneyCheckDollar className="m-1" />${props.capital}
                 </h6>
               </div>
               <div className="group-inner">
                 <p className="text-gray-100">Total Earnings</p>
                 <h6 className="flex items-center text-2xl font-bold">
-                  <FaMoneyCheckDollar className="m-1" />${roibalance.ROI}
+                  <FaMoneyCheckDollar className="m-1" />${props.ROI}
                 </h6>
               </div>
             </div>
           </div>
           <div className="bg-[#F8F4F2] flex p-10 box-shadow rounded-4 pl-30 pr-10">
             <div className="text-center">
-              <h4 className="pb-1 font-bold ">Withdrawal | Invest</h4>
+              <h4 className="pb-2 px-2 font-bold ">Withdrawal | Invest</h4>
               <Link href="/usersdashboard/package">
               <BsPlusSquareDotted className="mx-5 size-20" />
               </Link>
@@ -91,13 +83,13 @@ const Card = async ({ roibalance }) => {
                 <div className="group-inner">
                   <p className="text-gray-600">Amount Invested</p>
                   <h6 className="flex items-center text-2xl font-bold">
-                    <FaMoneyCheckDollar className="m-1" />${roibalance.capital}
+                    <FaMoneyCheckDollar className="m-1" />${props.capital}
                   </h6>
                 </div>
                 <div className="group-inner">
                   <p className="text-gray-600">Total Earnings</p>
                   <h6 className="flex items-center text-2xl font-bold">
-                    <FaMoneyCheckDollar className="m-1" />${roibalance.ROI}
+                    <FaMoneyCheckDollar className="m-1" />${props.ROI}
                   </h6>
                 </div>
               </div>

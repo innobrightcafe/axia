@@ -53,7 +53,7 @@ const StatCard = () => {
 
           <div class="bg-slate-50 p-5 m-2 flex justify-between items-center shadow">
             <div>
-              <h4 class="font-bold">Your Tickers</h4>
+              <h4 class="font-bold">Your Tickets</h4>
               <p class="text-gray-500">3</p>
             </div>
             <FaMoneyCheckDollar className="p-2 size-20 bg-yellow-200 rounded-md" />

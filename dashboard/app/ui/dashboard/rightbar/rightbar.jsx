@@ -21,8 +21,7 @@ const Rightbar = () => {
           start now and get your bonus.
           </p>
           <button className={styles.button}>
-            <MdPlayCircleFilled />
-            Read more
+            <MdPlayCircleFilled /> Read more
           </button>
         </div>
       </div>

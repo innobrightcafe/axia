@@ -3,7 +3,8 @@
     padding: 1rem;
     border-radius: 1rem;
     margin-top: 2rem;
-    box-shadow: var(--shadow);
+    box-shadow: var(--shadow); 
+    
 }
 
 .top {

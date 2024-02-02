@@ -1,9 +1,29 @@
-import styles from "../ui/login/login.module.css"; 
-import { authenticateUser } from "../lib/actions";
+"use client";
+import styles from "../ui/login/login.module.css";
 import Image from "next/image";
 import Link from "next/link";
+import { FaExclamationCircle } from "react-icons/fa";
+import { useState } from "react";
+import { addUser } from "../lib/actions";
+import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
+  const [errorMessage, setErrorMessage] = useState("");
+  const [successMessage, setSuccessMessage] = useState("");
+  const [pending, setPending] = useState(false);
+  const route = useRouter();
+  const handleSubmit = async () => { 
+    try {
+      const token = await addUser(formData);
+      // Store the token in session cookie
+      document.cookie = `token=${token}; path=/`; // Set the token as a session cookie
+      // Redirect user after successful login
+      route.push("/dashboard");
+    } catch (error) {
+      console.error("Login error:", error);
+      // Handle login errors
+    }
+  };
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>
@@ -22,41 +42,9 @@ const LoginPage = () => {
             </Link>
           </div>
         </div>
-        <form action={authenticateUser} className={styles.form}>
-          {/* <div className={styles.radio}>
-            <input
-              type="radio"
-              id="user"
-              className={styles.radioInput}
-              name="role"
-              value="user"
-              defaultChecked
-            />
-            <label
-              htmlFor="user"
-              className={`${styles.option} ${styles.option1}`}
-            >
-              <div className={styles.dot}></div>
-              <span>User</span>
-            </label>
-            <input
-              type="radio"
-              id="admin"
-              className={styles.radioInput}
-              name="role"
-              value="admin"
-            />
-            <label
-              htmlFor="admin"
-              className={`${styles.option} ${styles.option2}`}
-            >
-              <div className={styles.dot}></div>
-              <span>Admin</span>
-            </label>
-          </div> */}
-
+        <form action={handleSubmit} className={styles.form}>
           <div className={styles.inputdiv}>
-          <svg
+            <svg
               xmlns="http://www.w3.org/2000/svg"
               className="h-8 w-8 text-[#FF4300]"
               fill="none"
@@ -70,7 +58,6 @@ const LoginPage = () => {
                 d="M16 12a4 4 0 10-8 0 4 4 0 008 0zm0 0v1.5a2.5 2.5 0 005 0V12a9 9 0 10-9 9m4.5-1.206a8.959 8.959 0 01-4.5 1.207"
               />
             </svg>
-
             <input
               type="email"
               name="email"
@@ -99,12 +86,36 @@ const LoginPage = () => {
               placeholder="Enter Password"
             />
           </div>
-          <button type="submit">Login</button>
-          <span className="m-3  cursor-pointer text-ms hover:text-[#FF4300]">
-               <Link href='/'>
-               No account? Register
-               </Link> 
-              </span>
+          <div
+            className="flex h-8 items-end space-x-1"
+            aria-live="polite"
+            aria-atomic="true"
+          >
+            {/* Display error message */}
+            {errorMessage && (
+              <>
+                <FaExclamationCircle className="h-5 w-5 text-red-500" />
+                <p className="text-sm text-red-500">{errorMessage}</p>
+              </>
+            )}
+            {/* Display success message */}
+            {successMessage && (
+              <>
+                <p className="text-sm text-green-500">{successMessage}</p>
+              </>
+            )}
+          </div>
+          <button
+            aria-disabled={pending}
+            type="submit"
+            className="hover:animate-pulse"
+            disabled={pending}
+          >
+            {pending ? "Logging in..." : "Login"}
+          </button>
+          <span className="m-3  cursor-pointer text-ms hover:text-[#fa652f] ">
+            <Link href="/">No account? Register</Link>
+          </span>
         </form>
       </div>
     </div>
@@ -112,3 +123,12 @@ const LoginPage = () => {
 };
 
 export default LoginPage;
+
+//In the above code, we have a form with two
+// input fields for email and password.
+//When the user submits the form,
+//the  handleSubmit  function is called.
+//This function sends the form data to the
+//addUser  function, which is imported from the
+// lib/actions  file.
+// Path: dashboard/app/lib/actions.js

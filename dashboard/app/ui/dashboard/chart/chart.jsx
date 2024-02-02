@@ -19,8 +19,7 @@ const data = [
   { day: "Thu", returns: 200, balance: 1800 },
   { day: "Fri", returns: 200, balance: 2000 },
 ];
-
-const Chart = () => {
+const Chart = (props) => {
   return (
     <div className={styles.container}>
       <h3>Weekly Overview</h3>
@@ -42,8 +41,8 @@ const Chart = () => {
           <YAxis yAxisId="right" orientation="right" />
           <Tooltip contentStyle={{background:"var(--btn)", border:"none"}}/>
           <Legend />
-          <Line yAxisId="left" type="monotone" dataKey="returns" stroke="#8884d8" activeDot={{ r: 8 }} />
-          <Line yAxisId="right" type="monotone" dataKey="balance" stroke="#82ca9d" />
+          <Line yAxisId="left" type="monotone" dataKey={props.returns} stroke="#8884d8" activeDot={{ r: 8 }} />
+          <Line yAxisId="right" type="monotone" dataKey={props.balance} stroke="#82ca9d" />
         </LineChart>
       </ResponsiveContainer>
     </div>
