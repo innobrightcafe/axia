@@ -263,10 +263,10 @@ export const fetchUsers = async (q, page) => {
 export const authenticateUser = async (formData, cookies) => {
   const email = formData.get("email");
   const password = formData.get("password");
-
+console.log(formData);
   try {
-    // Get token from cookie
-    const token = cookies.token || '';
+  
+
     let urlEncoded = new URLSearchParams(formData).toString();
  
     const apiUrl = `${process.env.APIURL}/login`;
@@ -281,7 +281,8 @@ export const authenticateUser = async (formData, cookies) => {
     });
 
     const result = await response.json();
-    console.log("result: ", result);
+     
+    console.log("result: ", result); 
     // if (result && result.success) { 
     //   Cookies.set("token", result.token, { expires: 1}); 
     // } else {
@@ -289,9 +290,11 @@ export const authenticateUser = async (formData, cookies) => {
     // }
     
     // return result;
-    if (!response.ok) {
+    const token = result.token; 
+    if (!response.ok|| token) {
       throw new Error(data.message || "Login failed");
     }
+    console.log("Token: ", token);
     return result;
 
 
