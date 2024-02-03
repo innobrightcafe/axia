@@ -260,35 +260,44 @@ export const fetchUsers = async (q, page) => {
 // // };
 
 
-export const authenticateUser = async (formData) => {
+export const authenticateUser = async (formData, cookies) => {
   const email = formData.get("email");
   const password = formData.get("password");
 
   try {
+    // Get token from cookie
+    const token = cookies.token || '';
     let urlEncoded = new URLSearchParams(formData).toString();
  
     const apiUrl = `${process.env.APIURL}/login`;
+    //send token as a header to the login api
     const response = await fetch(apiUrl, {
       method: "POST",
       headers: {
         "Content-Type": "application/x-www-form-urlencoded",
+        Authorization: `Bearer ${token}`,
       },
       body: urlEncoded,
     });
 
     const result = await response.json();
     console.log("result: ", result);
-    if (result && result.success) { 
-      Cookies.set("token", result.token, { expires: 1}); 
-    } else {
-      console.error("User login failed:", result);
-    }
+    // if (result && result.success) { 
+    //   Cookies.set("token", result.token, { expires: 1}); 
+    // } else {
+    //   console.error("User login failed:", result);
+    // }
     
+    // return result;
+    if (!response.ok) {
+      throw new Error(data.message || "Login failed");
+    }
     return result;
+
 
   } catch (err) {
     console.error(err);
-    throw new Error("Failed to login check your detals");
+    throw new Error(err.message || "Failed to login check your detals");
   }
 };
 

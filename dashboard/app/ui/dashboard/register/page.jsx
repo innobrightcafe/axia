@@ -19,17 +19,18 @@ export const Register = () => {
         password: e.target.password.value,
         confirmPassword: e.target.confirmPassword.value,
       });
-      setError('');
+      setError(''); // Clear any previous errors
     setSuccess(success);
+
     if (success) {
-      document.cookie = `token=${token}; path=/`;
+      document.cookie = `token=${token}; path=/`; // Set token in cookie
       router.push('/dashboard');
     } 
   } catch (error) {
-    setError(error.message);
-    setSuccess('');
+    setError(error.message); 
+    setSuccess(''); 
   }
-  };
+};
 
   return ( 
     <div className={styles.container}>

@@ -3,27 +3,75 @@ import styles from "../ui/login/login.module.css";
 import Image from "next/image";
 import Link from "next/link";
 import { FaExclamationCircle } from "react-icons/fa";
-import { useState } from "react";
-import { addUser } from "../lib/actions";
+import { useState } from "react"; 
+import { authenticateUser } from "../lib/actions";
 import { useRouter } from "next/navigation";
 
 const LoginPage = () => {
-  const [errorMessage, setErrorMessage] = useState("");
-  const [successMessage, setSuccessMessage] = useState("");
+  const [success, setSuccess] = useState("");
+  const [error, setError] = useState("");
   const [pending, setPending] = useState(false);
-  const route = useRouter();
-  const handleSubmit = async () => { 
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    setPending(true);
+
     try {
-      const token = await addUser(formData);
-      // Store the token in session cookie
-      document.cookie = `token=${token}; path=/`; // Set the token as a session cookie
-      // Redirect user after successful login
-      route.push("/dashboard");
-    } catch (error) {
-      console.error("Login error:", error);
-      // Handle login errors
+      const formData = new FormData(e.target);
+      const result = await authenticateUser(formData);
+      setSuccess(result.message);
+      setError("");
+    } catch (err) {
+      setError(err.message);
+      setSuccess("");
     }
+
+    setPending(false);
   };
+
+  // const handleSubmit = async (e) => {
+  //   e.preventDefault();
+  //   setPending(true);
+
+  //   const mail = e.target.email.value;
+  //   const pass = e.target.password.value;
+  //   console.log(mail, pass);
+
+  //   try {
+  //     // Get token from cookie
+  //     const token = document.cookie.replace(
+  //       /(?:(?:^|.*;\s*)token\s*=\s*([^;]*).*$)|^.*$/,
+  //       "$1"
+  //     );
+  //     const apiUrl = `${process.env.APIURL}/login`;
+  //     // Send token as a header to the login API
+  //     const response = await fetch(apiUrl, {
+  //       method: "POST",
+  //       headers: {
+  //         "Content-Type": "application/json",
+  //         Authorization: `Bearer ${token}`,
+  //       },
+  //       body: JSON.stringify({
+  //         mail,pass,
+  //       }),
+  //     });
+
+  //     const data = await response.json();
+  //     console.log(data);
+
+  //     if (!response.ok) {
+  //       throw new Error(data.message || "Login failed");
+  //     }
+
+  //     // Login successful, redirect to dashboard
+  //     route.push("/dashboard");
+  //   } catch (error) {
+  //     setError(error.message);
+  //   }
+
+    
+  
+
   return (
     <div className={styles.container}>
       <div className={styles.formContainer}>
@@ -42,7 +90,7 @@ const LoginPage = () => {
             </Link>
           </div>
         </div>
-        <form action={handleSubmit} className={styles.form}>
+        <form onSubmit={handleSubmit} className={styles.form}>
           <div className={styles.inputdiv}>
             <svg
               xmlns="http://www.w3.org/2000/svg"
@@ -91,20 +139,20 @@ const LoginPage = () => {
             aria-live="polite"
             aria-atomic="true"
           >
-            {/* Display error message */}
-            {errorMessage && (
-              <>
-                <FaExclamationCircle className="h-5 w-5 text-red-500" />
-                <p className="text-sm text-red-500">{errorMessage}</p>
-              </>
-            )}
-            {/* Display success message */}
-            {successMessage && (
-              <>
-                <p className="text-sm text-green-500">{successMessage}</p>
-              </>
-            )}
+           
           </div>
+           {/* Display error/ success message */}
+           {error && (
+              <div className="text-red-500 p-4 rounded-lg bg-red-200">
+                <FaExclamationCircle/>
+                {error}
+              </div>
+            )}
+            {success && (
+              <div className="text-green-500 p-4 rounded-lg bg-green-200">
+                {success}
+              </div>
+            )}
           <button
             aria-disabled={pending}
             type="submit"

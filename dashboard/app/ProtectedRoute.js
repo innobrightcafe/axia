@@ -13,7 +13,10 @@ const ProtectedRoute = ({ children }) => {
     }
   }, []);
 
-  return <>{children}</>;
+  return 
+  <>
+  {children}
+  </>;
 };
 
 export default ProtectedRoute;
