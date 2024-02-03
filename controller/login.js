@@ -28,6 +28,10 @@ export async function login(req, res) {
     // Generate token
     const token = await authJwt({ email: user.email });
 
+    if (!token) {
+      return res.status(500).json({ success: false, message: "Token generation failed Internal server error" });
+    }
+
     return res.status(200).json({ success: true, token });
 
   } catch (error) {
