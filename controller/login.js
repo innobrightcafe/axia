@@ -4,41 +4,34 @@ import { authJwt } from "../middlewares/auth.js";
 
 export async function login(req, res) {
   try {
-    const email = req.body.email;
-    console.log(req.body);
-    if (!req.body.password || !req.body.email) {
-      return res.status(400).send({
-        msg: "send all required fields: email, password",
+    const { email, password } = req.body;
+
+    if (!email || !password) {
+      return res.status(400).json({
         success: false,
+        message: "Please provide both email and password",
       });
     }
 
-    const pass = req.body.password;
-    const value = await User.find({ email: req.body.email });
+    const user = await User.findOne({ email });
 
-    // Token generation
-    const tokenVal = { email };
-    const token = await authJwt(tokenVal);
-    console.log("Token: ", token);
-
-    if (value.length > 0) {
-      const authPass = value[0].password;
-      try {
-        const result = await bcrypt.compare(pass, authPass);
-        if (result) {
-          return res.status(200).send({ success: true, Token: token });
-        } else {
-          return res
-            .status(400)
-            .send({ success: false, message: "Incorrect Password" });
-        }
-      } catch (error) {
-        return res.status(500).send({ msg: error.message });
-      }
+    if (!user) {
+      return res.status(401).json({ success: false, message: "User not found" });
     }
-    return res.status(401).send({ message: "Please signup" });
+
+    const isPasswordValid = await bcrypt.compare(password, user.password);
+
+    if (!isPasswordValid) {
+      return res.status(401).json({ success: false, message: "Invalid password" });
+    }
+
+    // Generate token
+    const token = await authJwt({ email: user.email });
+
+    return res.status(200).json({ success: true, token });
+
   } catch (error) {
-    // console.log(error.message);
-    res.status(500).send({ message: error.message });
+    console.error("Login error:", error);
+    return res.status(500).json({ success: false, message: "Internal server error" });
   }
 }
